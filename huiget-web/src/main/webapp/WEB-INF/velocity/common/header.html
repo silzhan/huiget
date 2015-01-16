@@ -1,0 +1,43 @@
+<div class="header">
+	<div class="top-navbar">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="pull-right">
+						<a href="/member/trade/orders">我的订单</a>
+						|
+						<a href="/member/trade/cart"><i class="icon icon-material-shopping-cart"></i> 购物车<span class="icon-warning"><strong> $!{form.webContext.cartCount}</strong></span></a>
+						|
+						<a href="/member/trade/favorites"><i class="icon icon-material-star-rate"></i> 收藏夹</a>
+					</div>
+					<div>
+						#if(!$form.logon)
+						<a href="/member/login">登录</a>
+						|
+						<a href="/member/register">免费注册</a>
+						#else
+						<span><a href="/member/register">$!{form.webContext.nickName}</a></span>
+						<a href="/member/logout"> 退出</a>
+						#end
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="main-navbar">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<nav>
+						<h2><a style="border-left: none;" href="/" #if($form.requestURI == '/') class="active" #end>首页</a></h2>
+						#foreach($channel in $form.allChannel.values())
+						<h2><a #if($form.requestURI == '/product/channel/' + $!{channel.name}) class="active" #end href="/product/channel/$!{channel.name}">$!{channel.name}</a></h2>
+						#end
+					</nav>
+				</div>
+			</div>
+			
+		</div>
+		
+	</div>
+</div>

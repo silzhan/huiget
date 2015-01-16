@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>#parse("common/head.html")
+</head>
+
+<body>
+	#parse("common/header.html")
+	<div class="container-fluid">
+		<div class="row">
+			#parse("common/sidebar.html")
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<div class="page-header">
+					<h2>角色新增</h2>
+				</div>
+				<form class="form-horizontal" role="form" action="/role/add.json" method="post">
+					<div class="form-group">
+						<label for="name" class="col-sm-2 control-label">角色名称</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" name="name" id="name" value="$!{form.name}" placeholder="角色名称">
+						</div>
+					</div>
+					<div class="form-group">
+					    <label for="description" class="col-sm-2 control-label">角色描述</label>
+					    <div class="col-sm-4">
+					      <textarea class="form-control" rows="4" name="description" id="description" placeholder="角色描述">$!{form.description}</textarea>
+					    </div>
+					  </div>
+					<div class="form-group">
+						<label for="keywords" class="col-sm-2 control-label">角色权限选择</label>
+						<div class="col-sm-4">
+							#foreach($auth in $form.auths)
+								<div class="checkbox">
+									<label for="auth_$!{auth.id}"><input type="checkbox" name="authId" id="auth_$!{auth.id}" value="$!{auth.id}">$!{auth.name}</label>
+								</div>
+							#end
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-4">
+							<input type="button" value="确 定" id="btn-submit" class="btn btn-warning" />&nbsp;&nbsp; <a href="/role/list" class="btn btn-default">取 消</a>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-4">
+							<div class="alert alert-success tip-success" role="alert"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;信息保存成功</div>
+							<div class="alert alert-danger tip-danger" role="alert"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;信息保存失败</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	#parse("common/footer.html")
+</body>
+
+</html>

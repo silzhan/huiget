@@ -1,0 +1,15 @@
+<authentication-definition needLogin="true">
+	<authentications uriPrefix="/member/">
+		<authentication uri="deliverAddress"></authentication>
+	</authentications>
+	
+	<authentications uriPrefix="/account/">
+		<authentication uri="accountInfo"></authentication>
+		<authentication uri="accountSafe/modifyPassword"></authentication>
+		<authentication uri="modifyEmail"></authentication>
+		<authentication uri="accountSafe"></authentication>
+		<authentication uri="accountSafe/validateEmail"></authentication>
+		<authentication uri="paymentAccount"></authentication>
+	</authentications>
+	
+</authentication-definition>

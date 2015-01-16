@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huiget.mall.common.dal.mapper.BrandMapper">
+
+	<resultMap type="brand" id="brandResult">
+		<result property="id" column="id" />
+		<result property="nameEn" column="name_en" />
+		<result property="nameCn" column="name_cn" />
+		<result property="logo" column="logo" />
+		<result property="description" column="description" />
+		<result property="status" column="status" />
+		<result property="weight" column="weight" />
+		<result property="createTime" column="create_time" />
+		<result property="creator" column="creator" />
+		<result property="lastUpdateTime" column="last_update_time" />
+		<result property="updater" column="updater" />
+	</resultMap>
+
+	<insert id="insert" parameterType="brand" useGeneratedKeys="true" keyProperty="id">
+		insert into brand (name_en, name_cn, logo, description, status, weight, create_time, creator, last_update_time, updater)
+		values (#{nameEn}, #{nameCn}, #{logo}, #{description}, #{status}, #{weight}, #{createTime}, #{creator}, #{lastUpdateTime}, #{updater})
+	</insert>
+
+	<select id="queryById" resultMap="brandResult">
+		select id, name_en, name_cn, logo, description, status, weight, create_time, creator, last_update_time, updater
+		from brand where id = #{id}
+	</select>
+
+	<select id="queryByStatus" resultMap="brandResult">
+		select id, name_en, name_cn, logo, description, status, weight, create_time, creator, last_update_time, updater
+		from brand where status = #{status} order by weight desc, create_time
+	</select>
+
+	<select id="queryAll" resultMap="brandResult">
+		select id, name_en, name_cn, logo, description, status, weight, create_time, creator, last_update_time, updater
+		from brand order by weight desc
+	</select>
+
+	<select id="queryForPage" resultMap="brandResult">
+		select id, name_en, name_cn, logo, description, status, weight, create_time, creator, last_update_time, updater
+		from brand order by weight desc LIMIT #{begin},#{end}
+	</select>
+
+	<select id="count" resultType="int">
+		select count(1) from brand
+	</select>
+
+	<delete id="deleteById">
+		delete from brand where id = #{id}
+	</delete>
+
+	<update id="update" parameterType="brand">
+		update brand set name_en = #{nameEn}, name_cn = #{nameCn}, logo = #{logo},
+		description = #{description}, status = #{status}, weight = #{weight}, last_update_time = #{lastUpdateTime}, updater = #{updater} where id=#{id}
+	</update>
+	
+	<update id="updateLogo">
+		update brand set logo = #{logo} where id = #{id}
+	</update>
+
+</mapper>

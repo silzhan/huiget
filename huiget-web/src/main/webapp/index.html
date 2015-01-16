@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<html> 
+	<head>
+		
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="&#31169;&#21326;&#31449;&#65292;&#22882;&#20360;&#21697;&#65292;&#22882;&#20360;&#21697;&#37492;&#23450;" />
+<meta name="description" content="&#31169;&#21326;&#31449;&#22882;&#20360;&#21697;&#32593;&#31449;(sehva.com)&#20316;&#20026;&#20840;&#29699;&#26368;&#22823;&#30340;&#22882;&#20360;&#21697;&#26381;&#21153;&#20132;&#27969;&#24179;&#21488;&#65292;&#28041;&#21450;&#20102;&#22882;&#20360;&#21697;&#32593;&#19978;&#38144;&#21806;&#12289;&#22882;&#20360;&#21697;&#23454;&#20307;&#20241;&#38386;&#20250;&#25152;&#12289;&#22882;&#20360;&#21697;&#37492;&#23450;&#12289;&#20859;&#25252;&#26381;&#21153;&#31561;&#20027;&#33829;&#19994;&#21153;&#65292;100%&#27491;&#21697;&#20445;&#35777;&#65292;&#20840;&#29699;&#22882;&#21697;&#65292;&#23613;&#22312;&#31169;&#21326;&#31449;&#65281;"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<title>&#31169;&#21326;&#31449;-&#20840;&#29699;&#22882;&#20360;&#21697;&#26381;&#21153;&#20132;&#27969;&#24179;&#21488;&#65292;&#20840;&#29699;&#22882;&#21697;&#65292;&#23613;&#22312;&#31169;&#21326;&#31449;</title>
+<link rel="stylesheet" type="text/css" media="screen" href="http://www.sehva.com/css/common.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="http://www.sehva.com/css/headerFooter.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="http://www.sehva.com/css/loginReg.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="http://www.sehva.com/css/page_l.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="http://www.sehva.com/css/page_x.css" />
+
+<script type="text/javascript" src="http://www.sehva.com/js/jquery.min.js"></script>
+<script type="text/javascript" src="http://www.sehva.com/js/common_v1.0.js"></script>
+<!--[if lt IE 9]>
+    <script type="text/javascript" src="js/modernizr_v1.0.js"></script>  
+<![endif]-->
+	</head>
+
+	<body>
+			<script>
+		$(function(){
+			//顶部下拉框
+			$('#js-top_tool .top_tool_down').on('mouseenter',function(){
+				$(this).addClass("focus").find('.top_tool_panel').show();
+			});
+			$('#js-top_tool .top_tool_down').on('mouseleave ',function(){
+				$(this).removeClass("focus").find('.top_tool_panel').hide();
+			});
+
+			
+			//搜索框
+			$('#js-search').focus(function(){
+				$(this).parent().parent().addClass('focus');
+			});
+			$('#js-search').blur(function(){
+				$(this).parent().parent().removeClass('focus');
+			});
+			//顶部信息
+			$('#js-msg_wrap').hover(function(){
+				$(this).addClass('focus');
+				$('#js-show_box').show();
+			},function(){
+				$(this).removeClass('focus');
+				$('#js-show_box').hide();
+			});
+
+			//信息删除
+			$('#js-msg_info li').hover(function(){
+				$(this).find('.btn_delete').show();
+			},function(){
+				$(this).find('.btn_delete').hide();
+			});
+			//未读消息、历史消息 切换
+			$('#js-goto_history').on('click',function(){
+				$('#js-msg_unread').hide();
+				$('#js-msg_history').show();
+			});
+			$('#js-btn_back').on('click',function(){
+				$('#js-msg_unread').show();
+				$('#js-msg_history').hide();
+			});
+		})
+	</script>
+	
+	<!-- 头部开始 -->
+	<div class="header">
+		<div class="top_bar">
+			<div class="top cB">
+				<!-- 登陆 -->
+				<div class="top-login">
+											finley&nbsp;&nbsp;<a href="/member/logout" title="退出" class="btn_exit">退出</a>
+									</div>
+				
+				<!-- 新信息 -->
+								<div class="cB top_msg"> <!-- 有新消息时追加此类top_msg_new  -->
+					<i class="i_email"></i>
+					<div class="msg_wrap" id="js-msg_wrap">
+						<s>消息<!-- 有新消息 --></s>
+						<div class="show_box" id="js-show_box">
+							<!-- 未读消息 -->
+							<div class="msg_unread" id="js-msg_unread">
+								<h2>未读新消息</h2>
+								<!-- 消息为空时显示 -->
+								<div class="null">
+									<p>没有新消息了！</p>
+									<a href="#" class="btn-orange" id="js-goto_history">查看之前消息</a>
+								</div>
+
+								<!-- 消息不为空时 -->
+								<!-- <ul class="msg_info" id="js-msg_info">
+									<li data-message-id="47968937090">
+										<h3>提现申请未通过审核<a class="btn_delete" title="删除这条消息">删除</a></h3>
+										<p><a href="">由于您的银行信息不全（例如：卡号不规范，带有星号或是空格，卡号中包含全角字符，开户行支行名称不正确）或该卡连续被冻结！请仔细核实，待资金解冻后再次申请提现！</a>
+										</p>
+										<div class="bottom"><a href="">联系客服</a><span>|</span><a href="">查看现金账户</a></div>
+									</li>
+
+									<li data-message-id="47968937091">
+										<h3>恭喜 您有私品被拍下<a class="btn_delete" title="删除这条消息">删除</a></h3>
+										<div class="order">
+											<a href=""><img src="../images/temp/products_01.jpg" alt="" title="这里放商品标题"></a>
+											<p>订单号：243423424242</p>
+											<p>状态：已付款</p>
+											<p>买家：35****70@qq.com</p>
+										</div>	
+									</li>
+								</ul> -->
+							</div>
+
+							<!-- 历史消息 -->
+							<div class="msg_history" id="js-msg_history">
+								<h2><a href="#" class="btn_back" title="返回未读消息" id="js-btn_back"></a>历史消息</h2>
+								<ul class="msg_info" id="js-msg_info">
+									<li data-message-id="47968937090">
+										<h3>提现申请未通过审核<a class="btn_delete" title="删除这条消息">删除</a></h3>
+										<p><a href="">由于您的银行信息不全（例如：卡号不规范，带有星号或是空格，卡号中包含全角字符，开户行支行名称不正确）或该卡连续被冻结！请仔细核实，待资金解冻后再次申请提现！</a>
+										</p>
+										<div class="bottom"><a href="">联系客服</a><span>|</span><a href="">查看现金账户</a></div>
+									</li>
+
+									<li data-message-id="47968937091">
+										<h3>恭喜 您有私品被拍下<a class="btn_delete" title="删除这条消息">删除</a></h3>
+										<div class="order">
+											<a href=""><img src="../images/temp/products_01.jpg" alt="" title="这里放商品标题"></a>
+											<p>订单号：243423424242</p>
+											<p>状态：已付款</p>
+											<p>买家：35****70@qq.com</p>
+										</div>	
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!-- 右侧 -->
+				<ul class="top_tool" id="js-top_tool">
+					<li><a href="/member/cart">购物车（<b class="js_target_cart">0</b>）</a></li>
+					<li class="top_tool_down">
+						<s>|</s>
+						<a href="/mysehva" >我的私华站<b class="arrow"></b></a>
+						<div class="top_tool_panel">
+							<a href="/member/buyer/buiedProducts">已买到的私品</a>
+							<a href="/account/accountInfo">我的现金账户</a>
+							<a href="/member/buyer/favorites">我的收藏</a>
+						</div>
+					</li>
+					<li class="top_tool_down">
+						<s>|</s>
+						<a href="">我是卖家<b class="arrow"></b></a>
+						<div class="top_tool_panel">
+							<a href="/member/seller/productLaunch">发布私品</a>
+							<a href="/member/seller/soldProducts">已售出的私品</a>
+							
+						</div>
+					</li>
+				</ul>
+				
+			</div>
+			
+		</div> 	
+
+		<div class="header_inner">
+			<h1>
+				<a href="http://www.sehva.com">私华站</a>
+			</h1>
+			<nav>
+				<a href="http://www.sehva.com/catalog/Bag" target="_blank">包袋</a>
+				<a href="http://www.sehva.com/catalog/Watch" target="_blank">腕表</a>
+				<a href="http://www.sehva.com/catalog/Jewelry" target="_blank">首饰</a>
+				<a href="http://www.sehva.com/brandGallery" target="_blank">品牌馆</a>
+				<a href="" target="_blank">小站主页</a>
+			</nav>
+			<div class="search">
+				<form action="/search">
+					<input type="text" id="js-search" name="searchKey">
+					<button type="submit" title="搜索"></button>
+				</form>
+			</div>
+		</div>
+	</div>		<div class="main">
+		</div>
+		<div class="footer">
+
+		<div class="footer_top">
+			<div class="footer_top_inner">
+				<ul class="cB">
+					<li>
+						<a href="" target="_blank"><i class="i_01"></i>正品保障</a>
+					</li>
+					<li>
+						<a href="" target="_blank"><i class="i_02"></i>7天退换</a>
+					</li>
+					<li>
+						<a href="" target="_blank"><i class="i_03"></i>管家服务</a>
+					</li>
+					<li>
+						<a href="" target="_blank"><i class="i_04"></i>维修保养</a>
+					</li>
+					<li>
+						<a href="" target="_blank"><i class="i_05"></i>权威鉴定</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="footer_link cB">
+			<dl>
+				<dt>关于私华站</dt>
+				<dd><a href="/help/responsibility" target="_blank">免责声明</a></dd>
+				<dd><a href="/help/appraisalCenter" target="_blank">鉴定中心</a></dd>
+				<dd><a href="/help/nurseCenter" target="_blank">养护中心</a></dd>
+				<dd><a href="/help/cantactUs" target="_blank">联系我们</a></dd>
+			</dl>
+			<dl>
+				<dt>新手上路</dt>
+				<dd><a href="/help/shopping" target="_blank">购物流程</a></dd>
+				<dd><a href="" target="_blank">寄卖服务</a></dd>
+				<dd><a href="/help/register" target="_blank">登录注册</a></dd>
+				<dd><a href="/member/forgetPassword" target="_blank">找回密码</a></dd>
+			</dl>
+			<dl>
+				<dt>售后服务</dt>
+				<dd><a href="" target="_blank">退换货政策</a></dd>
+				<dd><a href="" target="_blank">售后维修</a></dd>
+				<dd><a href="" target="_blank">退款说明</a></dd>
+				
+			</dl>
+			<dl>
+				<dt>配送说明</dt>
+				<dd><a href="/help/delivery" target="_blank">配送方式</a></dd>
+				<dd><a href="" target="_blank">配送范围</a></dd>
+				
+			</dl>
+
+			<div class="serve">
+				<p class="tel">
+					服务热线：<span>4008-456-188</span>
+				</p>
+				<p class="time">
+					周一至周五<br />AM09:00~PM22:00<br />广州市环市东路368号花园大厦733
+				</p>
+			</div>
+
+			<div class="weixin">
+				<img src="../images/img/weixin.jpg" alt="微信二维码">
+				<p>关注有好礼</p>
+			</div>
+		</div>
+
+		<div class="footer_bottom">
+		</div>
+	 	
+	 	
+	</div>	</body>
+
+</html>

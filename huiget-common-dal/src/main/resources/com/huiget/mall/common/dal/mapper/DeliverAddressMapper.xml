@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huiget.mall.common.dal.mapper.DeliverAddressMapper">
+	
+    <resultMap type="deliverAddress" id="deliverAddressResult">
+		<result property="id" column="id"/>
+		<result property="userId" column="user_id"/>
+		<result property="receiverName" column="receiver_name"/>
+		<result property="province" column="province"/>
+		<result property="city" column="city"/>
+		<result property="area" column="area"/>
+		<result property="town" column="town"/>
+		<result property="address" column="address"/>
+		<result property="postcode" column="postcode"/>
+		<result property="mobilePhone" column="mobile_phone"/>
+		<result property="telePhone" column="tele_phone"/>
+		<result property="defaultStatus" column="default_status"/>
+		<result property="createTime" column="create_time" />
+		<result property="creator" column="creator" />
+		<result property="lastUpdateTime" column="last_update_time" />
+		<result property="updater" column="updater" />
+	</resultMap>
+	
+	<insert id="insert" parameterType="deliverAddress">
+		insert into deliver_address (user_id, receiver_name, country, province, city, area, town, address, postcode, mobile_phone, tele_phone, default_status, create_time, creator, last_update_time, updater) 
+		values (#{userId}, #{receiverName}, #{country}, #{province}, #{city}, #{area}, #{town}, #{address}, #{postcode}, #{mobilePhone}, #{telePhone}, #{defaultStatus}, #{createTime}, #{creator}, #{lastUpdateTime}, #{updater})
+	</insert>
+	
+    <select id="queryById" resultMap="deliverAddressResult">  
+       select id, user_id, receiver_name, country, province, city, area, town, address, postcode, mobile_phone, tele_phone, default_status, create_time, creator, last_update_time, updater 
+       from deliver_address where id = #{id}
+    </select>
+    
+    <delete id="deleteById">
+		delete from deliver_address where id = #{id}
+	</delete>
+    
+    <select id="queryDeliverAddressByUserId" resultMap="deliverAddressResult">  
+       select id, user_id, receiver_name, country, province, city, area, town, address, postcode, mobile_phone, tele_phone, default_status, create_time, creator, last_update_time, updater 
+       from deliver_address where user_id = #{userId} order by default_status desc, create_time desc
+    </select>
+    
+    <select id="queryDefaultDeliverAddressByUserId" resultMap="deliverAddressResult">  
+       select id, user_id, receiver_name, country, province, city, area, town, address, postcode, mobile_phone, tele_phone, default_status, create_time, creator, last_update_time, updater 
+       from deliver_address where user_id = #{userId} and default_status = '1' LIMIT 1
+    </select>
+    
+	<update id="update" parameterType="deliverAddress">
+		update deliver_address set receiver_name = #{receiverName}, country = #{country}, province = #{province}, city = #{city}, area = #{area}, 
+		town = #{town}, address = #{address}, postcode = #{postcode}, mobile_phone = #{mobilePhone}, 
+		tele_phone = #{telePhone}, default_status = #{defaultStatus}, last_update_time = #{lastUpdateTime} where id = #{id} and user_id = #{userId}
+	</update>
+	
+	<update id="updateDefaultStatus" parameterType="deliverAddress">
+		update deliver_address set default_status = #{defaultStatus}, last_update_time = #{lastUpdateTime}, updater = #{updater}
+		where <if test="id != 0"> id = #{id} and </if> user_id = #{userId} and default_status != #{defaultStatus}
+	</update>
+	
+	<delete id="deleteByIdAndUserId">
+		delete from deliver_address where id = #{id} and user_id = #{userId}
+	</delete>
+</mapper>

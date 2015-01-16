@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		#parse("common/head.html")
+	</head>
+	
+	<body>
+	
+	#parse("common/header.html")
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2 sidebar">
+				#parse("common/nav-sidebar.html")
+			</div>
+			<div class="col-md-10 main">
+				<div class="page-header">
+					<h4>我的订单</h4>
+				</div>
+				
+				<table class="table table-hover">
+						<thead>
+							<tr>
+								<th class="p4"><input id="checkbox-all" type="checkbox"></th>
+								<th class="p40">商品信息</th>
+								<th class="p15">金额（元）</th>
+								<th class="p6">数量</th>
+								<th class="p15">交易状态</th>
+								<th class="p15">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="6"></td>
+							</tr>
+							<tr>
+								<th colspan="6"><input id="checkbox-all" type="checkbox">商品信息</th>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<img style="width: 80px;" src="/images/favor_example.jpg" alt="头像">
+									<a href="">波司登 男士内裤 2条礼盒装 舒爽透气男士内裤</a>
+             					</td>
+								<td>29.90</td>
+								<td>1</td>
+								<td>商家已发货</td>
+								<td><a href="/category/edit?id=$!{category.id}" title="编辑"><span class="glyphicon glyphicon-edit"></span></a></td>
+							</tr>
+						</tbody>
+						<tbody>
+							<tr>
+								<td colspan="6"></td>
+							</tr>
+							<tr>
+								<th colspan="6"><input id="checkbox-all" type="checkbox">商品信息</th>
+							</tr>
+							<tr>
+								<th><input class="checkbox-item" type="checkbox" name="ids" value="$!{category.id}"></th>
+								<td>
+									<img style="width: 80px;" src="/images/favor_example.jpg" alt="头像">
+									<a href="">波司登 男士内裤 2条礼盒装 舒爽透气男士内裤</a>
+             					</td>
+								<td>29.90</td>
+								<td>1</td>
+								<td>商家已发货</td>
+								<td><a href="/category/edit?id=$!{category.id}" title="编辑"><span class="glyphicon glyphicon-edit"></span></a></td>
+							</tr>
+						</tbody>
+						<tbody>
+							<tr>
+								<td colspan="6"></td>
+							</tr>
+							<tr>
+								<th colspan="6"><input id="checkbox-all" type="checkbox">商品信息</th>
+							</tr>
+							<tr>
+								<th><input class="checkbox-item" type="checkbox" name="ids" value="$!{category.id}"></th>
+								<td>
+									<img style="width: 80px;" src="/images/favor_example.jpg" alt="头像">
+									<a href="">波司登 男士内裤 2条礼盒装 舒爽透气男士内裤</a>
+             					</td>
+								<td>29.90</td>
+								<td>1</td>
+								<td>商家已发货</td>
+								<td><a href="/category/edit?id=$!{category.id}" title="编辑"><span class="glyphicon glyphicon-edit"></span></a></td>
+							</tr>
+						</tbody>
+					</table>
+			</div>
+		</div>
+	</div>
+	
+	#parse("common/footer.html")
+	
+	
+	</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>#parse("common/head.html")
+	<style type="text/css">
+		.margin-top-60{
+			margin-top: 60px;
+		}
+	</style>
+</head>
+
+<body>
+
+	#parse("common/header-simple.html")
+	
+	<div class="container">
+		<div class="row">
+			<form action="/member/login" method="post" class="form-horizontal margin-top-60" role="form">
+				<div class="form-group">
+					<label for="userName" class="col-sm-4 control-label"></label>
+					<div class="col-sm-4">
+						<input type="text" class="full-input" id="userName" name="userName" value="$!{form.userName}" placeholder="手机 / 邮箱">
+					</div>
+					<p class="help-block red full-input-lh">$!{form.errors["userName"]}</p>
+				</div>
+				<div class="form-group">
+					<label for="password" class="col-sm-4 control-label"></label>
+					<div class="col-sm-4">
+						<input type="password" class="full-input" id="password" name="password" placeholder="密码">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-4 col-sm-4">
+						<div class="checkbox">
+							<label> <input type="checkbox" name="remember" value="1"> 记住登录状态（两周免登录）</label><span class="pull-right"><a href="/member/find-password">忘记密码？</a> </span>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-4 col-sm-4">
+						<input type="hidden" name="redirectURL" value="$!{form.redirectURL}" />
+						<button type="submit" class="btn btn-primary full-btn">登录</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	#parse("common/footer.html")
+
+</body>
+
+</html>

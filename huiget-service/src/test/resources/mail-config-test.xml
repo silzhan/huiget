@@ -1,0 +1,9 @@
+<mail-configs from="" replyTo="">
+
+	<mail-config templateId="huiget-mail" templatePath="/huiget-mail.vm">
+		<from>service@huiget.com</from>
+		<subject>邮件主题</subject>
+		<replyTo></replyTo>
+	</mail-config>
+
+</mail-configs>

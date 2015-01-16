@@ -1,0 +1,152 @@
+.red {
+	color: #ff5722;
+}
+
+.help-block {
+	margin-top: 8px;
+}
+
+.btn {
+	border-radius: 2px;
+}
+
+.full-input {
+	display: block;
+	padding: 0px 8px;
+	height: 48px;
+	border: 1px solid #ccc;
+	width: 100%;
+	border-radius: 2px;
+	margin: 4px 0;
+}
+
+.full-input-search {
+	display: block;
+	padding: 0px 8px;
+	height: 34px;
+	border: 1px solid #ccc;
+	border-right: 0;
+	border-radius: 2px;
+	width: 240px;
+}
+
+.full-input-sm {
+	display: block;
+	padding: 5px 8px;
+	border: 1px solid #ccc;
+	width: 100%;
+	border-radius: 2px;
+	margin: 3px 0;
+}
+
+.full-btn {
+	display: block;
+	height: 48px;
+	font-size: 18px;
+	width: 100%;
+	border-radius: 2px;
+}
+
+.select-sm {
+	height: 32px;
+	border-radius: 2px;
+	font-weight: normal;
+}
+
+.checkcode {
+	padding: 0px 8px;
+	height: 48px;
+	border: 1px solid #ccc;
+	outline: none;
+	width: 70%;
+	border-radius: 4px;
+}
+
+.checkcode-sm {
+	padding: 0px 8px;
+	height: 32px;
+	border: 1px solid #ccc;
+	outline: none;
+	width: 66%;
+	border-radius: 2px;
+}
+
+#checkcode-img {
+	cursor: pointer;
+	border-radius: 2px;
+}
+
+#checkcode-img-sm {
+	cursor: pointer;
+	border-radius: 2px;
+	height: 32px;
+}
+
+.steps {
+	position: relative;
+	width: 100%;
+	clear: both;
+	font-size: 16px;
+	margin-bottom: 14px;
+}
+
+.step {
+	width: 24%;
+	display: inline-block;
+	line-height: 38px;
+	text-align: center;
+	color: #999;
+}
+
+.step-active {
+	width: 24%;
+	display: inline-block;
+	line-height: 38px;
+	text-align: center;
+	color: #666;
+}
+
+.step-active .step-badge {
+	background-color: #4285f4;
+	color: #fff;
+}
+
+.step-badge {
+	display: inline-block;
+	padding: 10px 14px;
+	line-height: 1;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: baseline;
+	background-color: #eee;
+	border-radius: 18px;
+}
+
+.step-txt {
+	display: block;
+}
+
+.step-route {
+	border: 1px solid #ccc;
+	position: absolute;
+	top: 18px;
+	display: inline-block;
+	z-index: -1;
+	width: 100%;
+	left: 0px;
+	font-size: 0px;
+}
+
+.avatar {
+	position: absolute;
+	top: 82px;
+	right: 40px;
+	text-align: center;
+	line-height: 27px;
+}
+
+.oper-notice {
+	font-size: 16px;
+	text-align: center;
+	line-height: 40px;
+}

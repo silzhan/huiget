@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huiget.mall.common.dal.mapper.ValidateInfoMapper">
+	
+    <resultMap type="validateInfo" id="validateInfoResult">
+		<result property="id" column="id"/>
+		<result property="userId" column="user_id"/>
+		<result property="code" column="code"/>
+		<result property="type" column="type"/>
+		<result property="target" column="target"/>
+		<result property="expireTime" column="expire_time"/>
+		<result property="status" column="status"/>
+		<result property="createTime" column="create_time" />
+		<result property="creator" column="creator" />
+		<result property="lastUpdateTime" column="last_update_time" />
+		<result property="updater" column="updater" />
+	</resultMap>
+	
+	<insert id="insert" parameterType="validateInfo" useGeneratedKeys="true" keyProperty="id">
+		insert into validate_info (user_id, code, type, target, expire_time, status, create_time, creator, last_update_time, updater) 
+		values (#{userId}, #{code}, #{type}, #{target}, #{expireTime}, #{status}, #{createTime}, #{creator}, #{lastUpdateTime}, #{updater})
+	</insert>
+	
+	<delete id="deleteById">
+		delete from validate_info where id = #{id}
+	</delete>
+
+	<select id="queryByCode" parameterType="string" resultMap="validateInfoResult">
+      select id, user_id, code, type, target, expire_time, status, create_time, creator, last_update_time, updater 
+       from validate_info where code = #{code}
+    </select>
+    
+    <select id="queryValidValidateInfoByUserIdAndTargetAndType" resultMap="validateInfoResult">
+       select id, user_id, code, type, target, expire_time, status, create_time, creator, last_update_time, updater 
+       from validate_info where user_id = #{userId} and type = #{type} and target = #{target} and status = '1'
+       order by create_time desc
+    </select>
+    
+	<update id="updateStatus" parameterType="validateInfo">
+		update validate_info set status = #{status}, last_update_time = #{lastUpdateTime} 
+		where user_id = #{userId} 
+		<if test="target != null and target!=''"> and target = #{target}</if>
+		<if test="type != null and type!=''"> and type = #{type}</if>
+	</update>
+</mapper>

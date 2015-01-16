@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		#parse("common/head.html")
+	</head>
+	
+	<body>
+	
+	#parse("common/header.html")
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2 sidebar">
+				#parse("common/nav-sidebar.html")
+			</div>
+			<div class="col-md-10 main">
+				<div class="page-header">
+					<h4>$!{form.title}</h4>
+				</div>
+				<p class="oper-notice">
+				#if($form.status == '1')
+					<i class="icon icon-material-check icon-success"></i> 恭喜您，$!{form.title}成功！
+					#if($form.returnURI && $form.returnURI != '')
+					<a href="$!{form.returnURI}"> 返回&gt;&gt;</a>
+					#end
+				#else
+					<i class="icon icon-material-warning icon-warning"></i> 很遗憾，$!{form.title}失败！
+					#if($form.reason && $form.reason != '')
+					失败原因：$!{form.reason}！
+					#end
+					#if($form.returnURI && $form.returnURI != '')
+					<a href="$!{form.returnURI}"> 返回&gt;&gt;</a>
+					#end
+				#end
+				</p>
+			</div>
+		</div>
+	</div>
+	
+	#parse("common/footer.html")
+	
+	
+	</body>
+
+</html>

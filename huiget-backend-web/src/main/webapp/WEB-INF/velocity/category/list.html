@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>#parse("common/head.html")
+</head>
+
+<body>
+	#parse("common/header.html")
+	<div class="container">
+		<div class="row">
+			#parse("common/sidebar.html")
+			<div class="col-md-10 main">
+				<div class="page-header">
+					<h4>类目列表</h4>
+				</div>
+
+				<div class="table-responsive">
+					<table class="table table-hover table-bordered">
+						<thead>
+							<tr>
+								<th class="p30">类目英文名</th>
+								<th class="p30">类目中文名</th>
+								<th>类目级别</th>
+								<th class="p10">类目权重</th>
+								<th class="p10">类目状态</th>
+								<th class="p6">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							#if($form.categories && $form.categories.size() > 0) 
+								#foreach($category in $form.categories)
+								<tr>
+									<td>$!{category.nameEn}</td>
+									<td>$!{category.nameCn}</td>
+									<td>#if($category.level==1) 一级类目 #else 二级类目 #end</td>
+									<td>$!{category.weight}</td>
+									<td>#if($category.status==1) 有效 #else 无效 #end</td>
+									<td><a href="/category/edit?id=$!{category.id}" title="编辑"><span class="glyphicon glyphicon-edit"></span></a></td>
+								</tr>
+								#end 
+							#else
+							<tr>
+								<td colspan="7">没有符合条件的记录可以显示</td>
+							</tr>
+							#end
+						</tbody>
+					</table>
+					#if($form.totalPageNumber > 1) 
+					<div class="pagination-warp">
+						<div class="pagination-tip">显示<strong>$!{form.begin}</strong>到<strong>$!{form.end}</strong>，共<strong>$!{form.count}</strong>记录</div>
+						<ul class="pagination">
+							#if($form.pageNumber==1)
+							<li class="disabled"><a href="#">&laquo;</a></li> 
+							#else
+							<li><a href="/category/list">&laquo;</a></li> 
+							#end 
+							#foreach($page in [1..$form.totalPageNumber])
+							<li #if($form.pageNumber==$page) class="active" #end><a href="/category/list?pageNumber=$page">$page</a></li> 
+							#end 
+							#if($form.pageNumber>=$form.totalPageNumber)
+							<li class="disabled"><a href="#">&raquo;</a></li> 
+							#else
+							<li><a href="/category/list?pageNumber=$form.totalPageNumber">&raquo;</a></li> 
+							#end
+						</ul>
+					</div>
+					#end
+				</div>
+			</div>
+		</div>
+	</div>
+	#parse("common/footer.html")
+</body>
+
+</html>

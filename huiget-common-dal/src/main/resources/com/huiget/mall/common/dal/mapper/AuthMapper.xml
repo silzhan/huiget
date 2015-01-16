@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huiget.mall.common.dal.mapper.AuthMapper">
+
+	<resultMap type="auth" id="authResult">
+		<result property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="menuIds" column="menu_ids" />
+		<result property="createTime" column="create_time" />
+		<result property="creator" column="creator" />
+		<result property="lastUpdateTime" column="last_update_time" />
+		<result property="updater" column="updater" />
+	</resultMap>
+	
+	<select id="queryById" resultMap="authResult">
+       select id, name, menu_ids, create_time, creator, last_update_time, updater
+       from auth where id = #{id}
+    </select>
+    
+	<select id="queryAll" resultMap="authResult">
+		select id, name, menu_ids, create_time, creator, last_update_time, updater
+	   from auth order by create_time desc
+	</select>
+    
+    <select id="queryForPage" resultMap="authResult">
+	   select id, name, menu_ids, create_time, creator, last_update_time, updater
+	   from auth order by create_time desc LIMIT #{begin},#{end}
+    </select>
+    
+    <insert id="insert" parameterType="auth">
+		insert into auth (name, menu_ids, create_time, creator, last_update_time, updater) 
+		values (#{name}, #{menuIds}, #{createTime}, #{creator}, #{lastUpdateTime}, #{updater})
+	</insert>
+	
+    <select id="count" resultType="int">
+		select count(1) from auth
+	</select>
+	
+    <delete id="deleteById">
+		delete from auth where id = #{id}
+	</delete>
+
+	<update id="update" parameterType="auth">
+		update auth set name = #{name}, menu_ids = #{menuIds}, last_update_time = #{lastUpdateTime}, updater = #{updater} where id = #{id}
+	</update>
+
+</mapper>

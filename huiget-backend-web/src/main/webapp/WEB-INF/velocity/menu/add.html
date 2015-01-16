@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>#parse("common/head.html")
+</head>
+
+<body>
+	#parse("common/header.html")
+	<div class="container-fluid">
+		<div class="row">
+			#parse("common/sidebar.html")
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<div class="page-header">
+					<h2>菜单新增</h2>
+				</div>
+				<form class="form-horizontal" role="form" action="/menu/add.json" method="post">
+					<div class="form-group">
+						<label for="uri" class="col-sm-2 control-label">菜单URI</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" name="uri" id="uri" value="$!{form.uri}" placeholder="菜单URI">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="name" class="col-sm-2 control-label">菜单名称</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" name="name" id="name" value="$!{form.name}" placeholder="菜单名称">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="keywords" class="col-sm-2 control-label">上级菜单</label>
+						<div class="col-sm-4">
+							<select class="form-control" id="parentId" name="parentId">
+								<option value="0">顶级菜单</option>
+								#foreach($menu in $form.menus)
+								<option value="$!{menu.id}">&nbsp;&nbsp;&nbsp;&nbsp;$!{menu.name}</option>
+								#end
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="weight" class="col-sm-2 control-label">权重</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" name="weight" id="weight" value="$!{form.weight}" placeholder="权重：0~999数字">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-4">
+							<input type="button" value="确 定" id="btn-submit" class="btn btn-warning" />&nbsp;&nbsp; <a href="/menu/list" class="btn btn-default">取 消</a>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-4">
+							<div class="alert alert-success tip-success" role="alert"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;信息保存成功</div>
+							<div class="alert alert-danger tip-danger" role="alert"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;信息保存失败</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	#parse("common/footer.html")
+</body>
+
+</html>

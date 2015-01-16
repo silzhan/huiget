@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>#parse("common/head.html")
+</head>
+
+<body>
+	#parse("common/header.html")
+	<div class="container-fluid">
+		<div class="row">
+			#parse("common/sidebar.html")
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<div class="page-header">
+					<h2>网站设置信息列表</h2>
+				</div>
+
+				<div class="table-responsive">
+					<table class="table table-hover table-bordered">
+						<thead>
+							<tr>
+								<th class="p4"><input id="checkbox-all" type="checkbox"></th>
+								<th class="p20">URI</th>
+								<th class="p20">Title</th>
+								<th class="p20">Keywords</th>
+								<th class="p30">Description</th>
+								<th class="p6">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							#if($form.metas && $form.metas.size() >0)
+		              			#foreach($meta in $form.metas)
+								<tr>
+									<td><input class="checkbox-item" type="checkbox" name="ids" value="$!{meta.id}"></td>
+				                    <td>$!{meta.uri}</td>
+				                    <td>$!{meta.title}</td>
+				                    <td>$!{meta.keywords}</td>
+				                    <td>$!{meta.description}</td>
+				                    <td><a href="/meta/edit?id=$!{meta.id}" title="编辑"><span class="glyphicon glyphicon-edit"></span></a>
+				                  	&nbsp;<span title="删除 " class="glyphicon glyphicon-trash" data-url="/meta/delete.json" data-id="$!{meta.id}"></span>
+				                  </td>
+								</tr>
+								#end 
+							#else
+							<tr>
+								<td colspan="6">没有符合条件的记录可以显示</td>
+							</tr>
+							#end
+						</tbody>
+					</table>
+					#if($form.totalPageNumber > 1) 
+					<div class="pagination-warp">
+						<div class="pagination-tip">显示<strong>$!{form.begin}</strong>到<strong>$!{form.end}</strong>，共<strong>$!{form.count}</strong>记录</div>
+						<ul class="pagination">
+							#if($form.pageNumber==1)
+							<li class="disabled"><a href="#">&laquo;</a></li> 
+							#else
+							<li><a href="/meta/list">&laquo;</a></li> 
+							#end 
+							#foreach($page in [1..$form.totalPageNumber])
+							<li #if($form.pageNumber==$page) class="active" #end><a href="/meta/list?pageNumber=$page">$page</a></li> 
+							#end 
+							#if($form.pageNumber>=$form.totalPageNumber)
+							<li class="disabled"><a href="#">&raquo;</a></li> 
+							#else
+							<li><a href="/meta/list?pageNumber=$form.totalPageNumber">&raquo;</a></li> 
+							#end
+						</ul>
+					</div>
+					#end
+				</div>
+			</div>
+		</div>
+	</div>
+	#parse("common/footer.html")
+</body>
+
+</html>

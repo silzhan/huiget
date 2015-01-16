@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huiget.mall.common.dal.mapper.ProductMapper">
+
+	<resultMap type="product" id="productResult">
+		<result property="id" column="id" />
+		<result property="channel" column="channel" />
+		<result property="category" column="category" />
+		<result property="prodId" column="prod_id" />
+		<result property="prodName" column="prod_name" />
+		<result property="price" column="price" />
+		<result property="discountPrice" column="discount_price" />
+		<result property="discount" column="discount" />
+		<result property="merName" column="mer_name" />
+		<result property="detailLink" column="detail_link" />
+		<result property="recommendReason" column="recommend_reason" />
+		<result property="prodPic" column="prod_pic" />
+		<result property="createTime" column="create_time" />
+	</resultMap>
+	
+	<select id="queryById" resultMap="productResult">
+       select id, channel, category, prod_id, prod_name, price, discount_price, discount, mer_name, detail_link, recommend_reason, prod_pic, create_time 
+       from product where id = #{id}
+    </select>
+    
+	<select id="queryAll" resultMap="productResult">
+		select id, channel, category, prod_id, prod_name, price, discount_price, discount, mer_name, detail_link, recommend_reason, prod_pic, create_time 
+	   from product order by create_time
+	</select>
+	
+	<select id="queryByConditionForPage" resultMap="productResult">
+		select id, channel, category, prod_id, prod_name, price, discount_price, discount, mer_name, detail_link, recommend_reason, prod_pic, create_time 
+	   from product where channel = #{channel}
+	   <if test="category != null and category != ''"> and category = #{category}</if>
+	    order by create_time LIMIT #{begin},#{end}
+	</select>
+	
+	<select id="queryByBigestDiscount" resultMap="productResult">
+		select id, channel, category, prod_id, prod_name, price, discount_price, discount, mer_name, detail_link, recommend_reason, prod_pic, create_time 
+	   from product where 1 = 1
+	   <if test="channel != null and channel != ''"> and channel = #{channel}</if>
+	   <if test="category != null and category != ''"> and category = #{category}</if>
+	    order by discount LIMIT #{begin},#{end}
+	</select>
+	
+	<select id="countByCondition" resultType="int">
+		select count(1) from product where channel = #{channel}
+	   <if test="category != null and category != ''"> and category = #{category}</if>
+	</select>
+	
+	<select id="queryCategoryByChannel" resultType="string">
+		select category,count(category) count from product where channel =#{channel} GROUP BY category order by count desc
+	</select>
+    
+    <select id="queryForPage" resultMap="productResult">
+	  select id, channel, category, prod_id, prod_name, price, discount_price, discount, mer_name, detail_link, recommend_reason, prod_pic, create_time 
+	   from product order by create_time LIMIT #{begin},#{end}
+    </select>
+    
+    <insert id="insert" parameterType="product">
+		insert into product (channel, category, prod_id, prod_name, price, discount_price, discount, mer_name, recommend_reason, prod_pic, create_time) 
+		values (#{channel}, #{category}, #{prodId}, #{prodName}, #{price}, #{discountPrice}, #{discount}, #{merName}, #{detailLink}, #{recommendReason}, #{prodPic}, #{createTime})
+	</insert>
+	
+    <select id="count" resultType="int">
+		select count(1) from product
+	</select>
+
+</mapper>

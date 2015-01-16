@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>#parse("common/head.html")
+</head>
+
+<body>
+	#parse("common/header.html")
+	<div class="container">
+		<div class="row">
+			#parse("common/sidebar.html")
+			<div class="col-md-10 main">
+				<div class="page-header">
+					<h4>系统参数列表</h4>
+				</div>
+				<div class="table-responsive">
+					<table class="table table-hover table-bordered">
+						<thead>
+							<tr>
+								<th>参数类型</th>
+								<th>参数名称</th>
+								<th>参数Key</th>
+								<th>参数值</th>
+								<th>参数状态</th>
+								<th class="p6">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							 #if($form.systemParameters && $form.systemParameters.size() > 0)
+		              			#foreach($systemParameter in $form.systemParameters)
+								<tr>
+									<td>$!{systemParameter.paramType}/$!{form.paramTypeMap[$systemParameter.paramType]}</td>
+									<td>$!{systemParameter.paramName}</td>
+									<td>$!{systemParameter.paramKey}</td>
+									<td>$!{systemParameter.paramValue}</td>
+									<td>#if($systemParameter.status==1) 有效 #else 无效 #end</td>
+									<td><a href="/system-parameter/edit?id=$!{category.id}" title="编辑"><span class="glyphicon glyphicon-edit"></span></a></td>
+								</tr>
+								#end
+		                	#else
+			                <tr>
+			                	<td colspan="7">没有符合条件的记录可以显示</td>
+			                </tr>
+			                #end
+						</tbody>
+					</table>
+					#if($form.totalPageNumber > 1) 
+					<div class="pagination-warp">
+						<div class="pagination-tip">显示<strong>$!{form.begin}</strong>到<strong>$!{form.end}</strong>，共<strong>$!{form.count}</strong>记录</div>
+						<ul class="pagination">
+							#if($form.pageNumber==1)
+							<li class="disabled"><a href="#">&laquo;</a></li> 
+							#else
+							<li><a href="/system-parameter/list?paramType=$!{form.paramType}">&laquo;</a></li> 
+							#end 
+							#foreach($page in [1..$form.totalPageNumber])
+							<li #if($form.pageNumber==$page) class="active" #end><a href="/system-parameter/list?paramType=$!{form.paramType}&pageNumber=$page">$page</a></li> 
+							#end 
+							#if($form.pageNumber>=$form.totalPageNumber)
+							<li class="disabled"><a href="#">&raquo;</a></li> 
+							#else
+							<li><a href="/system-parameter/list?paramType=$!{form.paramType}&pageNumber=$form.totalPageNumber">&raquo;</a></li> 
+							#end
+						</ul>
+					</div>
+					#end
+				</div>
+			</div>
+		</div>
+	</div>
+	#parse("common/footer.html")
+</body>
+
+</html>

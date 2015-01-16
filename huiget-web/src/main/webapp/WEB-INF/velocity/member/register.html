@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>#parse("common/head.html")
+	<style type="text/css">
+		.margin-top-60{
+			margin-top: 60px;
+		}
+	</style>
+</head>
+
+<body>
+
+	#parse("common/header-simple.html")
+
+	<div class="container">
+		<div class="row">
+			<form action="/member/register" method="post" class="form-horizontal margin-top-60" role="form">
+				<div class="form-group">
+					<label for="userName" class="col-sm-4 control-label"></label>
+					<div class="col-sm-4">
+						<input type="text" class="full-input" id="userName" name="userName" value="$!{form.userName}" maxlength="50" placeholder="手机 / 邮箱">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="password" class="col-sm-4 control-label"></label>
+					<div class="col-sm-4">
+						<input type="password" class="full-input" id="password" name="password" maxlength="20" placeholder="密码由6-20个数字、字母组成">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="confirmPassword" class="col-sm-4 control-label"></label>
+					<div class="col-sm-4">
+						<input type="password" class="full-input" id="confirmPassword" name="confirmPassword" maxlength="20" placeholder="确认密码">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-4 col-sm-4">
+						<div class="checkbox">
+							<label> <input type="checkbox" name="agreement" value="1"> 我已阅读并接受 </label><a href="">《用户服务协议》</a>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-4 col-sm-4">
+						<button type="submit" class="btn btn-primary full-btn">注册</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	#parse("common/footer.html")
+
+</body>
+
+</html>

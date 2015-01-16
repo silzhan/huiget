@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module type="WEB" name="huiget-backend-web" id="huiget-backend-web" context-root="/huiget-backend-web" j2ee-spec="1.4" archive="huiget-backend-web.war">
+  <attributes>
+    <attribute name="webrootdir" value="src/main/webapp"/>
+  </attributes>
+</project-module>

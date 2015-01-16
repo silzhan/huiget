@@ -1,0 +1,23 @@
+<authentication-definition needLogin="true"
+	roles="all">
+
+	<authentications uriPrefix="/member/">
+		<authentication uri="trade/orders"></authentication>
+		<authentication uri="trade/cart"></authentication>
+		<authentication uri="trade/favorites"></authentication>
+
+		<authentication uri="account/profile"></authentication>
+		<authentication uri="account/modify-password"></authentication>
+		<authentication uri="account/deliver-address"></authentication>
+		<authentication uri="account/set-deliver-address-default-status"></authentication>
+		<authentication uri="account/delete-deliver-address.json"></authentication>
+		
+		<authentication uri="account/validate-email"></authentication>
+		<authentication uri="account/validate-email-notice"></authentication>
+		
+		<authentication uri="account/validate-mobilephone"></authentication>
+		<authentication uri="account/validate-mobilephone-notice"></authentication>
+		<authentication uri="account/active-mobilephone"></authentication>
+	</authentications>
+
+</authentication-definition>

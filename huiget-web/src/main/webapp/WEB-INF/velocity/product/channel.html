@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		#parse("common/head.html")
+	</head>
+	
+	<body>
+	
+	#parse("common/header.html")
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<ul class="breadcrumb main-breadcrumb">
+					<li><a href="/">首页</a></li>
+					<li><a href="/product/channel/$!{form.channel.channelId}">$!{form.channel.name}</a></li>
+					#if($form.category && $form.category != '')
+					<li><a href="/product/channel/$!{form.channel.channelId}?category=$!{form.category}">$!{form.category}</a></li>
+					#end
+				</ul>
+				<table class="table table-bordered product-condition-table">
+					<thead>
+						#if($form.categories && $form.categories.size() > 0)
+						<tr>
+							<th>所属类目</th>
+							<td>
+								#foreach($category in $form.categories)
+								<a #if($form.category == $category) class="active" #end href="/product/channel/${form.channel.name}?category=$!{category}">$!{category}</a>
+								#end
+							</td>
+						</tr>
+						#end
+					</thead>
+				</table>
+				<div class="breadcrumb sub-breadcrumb">
+					<a href="/" class="active">最新</a>
+					<a href="/">价格 &uarr;</a>
+					#set($pre = $form.pageNumber + (-1))
+					#set($next = $form.pageNumber + 1)
+					<div class="pull-right">共<strong> $!{form.count} </strong>件商品#if($form.totalPageNumber > 1)<a href="/product/channel/${form.channel.name}?category=$!{form.category}&pageNumber=#if($form.pageNumber == 1)1#else$!{pre}#end"><strong>&lt;</strong></a><strong>$!{form.pageNumber}</strong>/$!{form.totalPageNumber}<a href="/product/channel/${form.channel.name}?category=$!{form.category}&pageNumber=#if($form.pageNumber == $form.totalPageNumber)$!{form.totalPageNumber}#else$!{next}#end"><strong>&gt;</strong></a>#end</div>
+				</div>
+			</div>
+			<div class="col-lg-12">
+                <ul class="prod-items">
+	            #foreach($product in $form.products)
+	                #if($velocityCount%4 ==1)
+	                <li>
+	                #end
+	                <div class="col-lg-3">
+		                <div class="prod-item">
+		                	<p><a href="$!{product.detailLink}" target="blank"><img src="$!{product.prodPic}" alt="$!{product.prodName}" /></a></p>
+		                    <p class="prod-name"><a href="$!{product.detailLink}" title="$!{product.prodName}">$!{product.prodName}</a></p>
+		                    <p>
+		                    	市场价：<span class="price">¥ $!{product.priceForShow}</span><br>
+		                    	<strong>双12价：</strong><span class="discount-price">¥ $!{product.discountPriceForShow}</span>
+		                    </p>
+		                </div>
+					</div>
+					#if($velocityCount%4 ==0)
+	                </li>
+	                #end
+				#end
+				#if($form.products.size()%4 !=0)
+	                </li>
+	            #end
+				</ul>
+				<ul class="pagination pagination-lg pull-right">
+            	#if($form.totalPageNumber > 1)
+	              #if($form.pageNumber==1)
+	              <li class="disabled"><a href="#">&laquo;</a></li>
+				  #else
+				  <li><a href="/product/channel/${form.channel.name}?category=$!{form.category}">&laquo;</a></li>
+				  #end
+				  
+				  #foreach($page in [1..$form.totalPageNumber])
+				  <li #if($form.pageNumber==$page) class="active" #end><a href="/product/channel/${form.channel.name}?category=$!{form.category}&pageNumber=$!{page}">$page</a></li>
+				  #end
+				  
+				  #if($form.pageNumber>=$form.totalPageNumber)
+	              <li class="disabled"><a href="#">&raquo;</a></li>
+				  #else
+				  <li><a href="/product/channel/${form.channel.name}?category=$!{form.category}&pageNumber=$!{form.totalPageNumber}">&raquo;</a></li>
+				  #end
+            	#end
+            	</ul>
+			</div>
+		</div>
+	</div>
+	
+	#parse("common/footer.html")
+	
+	</body>
+
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>#parse("common/head.html")
+<link rel="stylesheet" href="$!{form.staticResourceDomain}/css/uploadify.css">
+</head>
+
+<body>
+	#parse("common/header.html")
+	<div class="container">
+		<div class="row">
+			#parse("common/sidebar.html")
+			<div class="col-md-10 main">
+				<div class="page-header">
+					<h4>品牌新增</h4>
+				</div>
+				<form class="form-horizontal" role="form" action="/brand/add" method="post">
+					<div class="form-group">
+						<label for="nameEn" class="col-sm-2 control-label">品牌英文名称：</label>
+						<div class="col-sm-3">
+							<input type="text" class="full-input-sm" id="nameEn" name="nameEn" value="$!{form.nameEn}" maxlength="50" required="required" placeholder="品牌英文名称">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="nameCn" class="col-sm-2 control-label">品牌中文名称：</label>
+						<div class="col-sm-3">
+							<input type="text" class="full-input-sm" id="nameCn" name="nameCn" value="$!{form.nameCn}" maxlength="25" required="required" placeholder="品牌中文名称">
+						</div>
+					</div>
+					<div class="form-group">
+					    <label class="col-sm-2 control-label">品牌Logo</label>
+					    <div class="col-sm-3">
+					    	<img style="width:128px;" src="/images/img-holder-128.png" id="upload-file">
+					    	<input type="hidden" name="tempId" value="0">
+					    	<input id="file-upload-input" type="file" name="file" >
+					    </div>
+					</div>
+					<div class="form-group">
+						<label for="description" class="col-sm-2 control-label">品牌故事：</label>
+						<div class="col-sm-6">
+							<script type="text/plain" name="description" id="editor" style="height:160px;">$!{form.description}</script>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="weight" class="col-sm-2 control-label">权重：</label>
+						<div class="col-sm-3">
+							<input type="text" class="full-input-sm" name="weight" id="weight" value="$!{form.weight}" placeholder="权重：0~999数字">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="status" class="col-sm-2 control-label">状态：</label>
+						<div class="col-sm-3">
+							<label class="radio-inline"> <input type="radio" #if($form.status==1) checked="checked" #end name="status" id="status1" value="1" /> 有效
+							</label> <label class="radio-inline"> <input type="radio" #if($form.status==0) checked="checked" #end name="status" id="status0" value="0" /> 无效
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-3">
+							<button type="submit" class="btn btn-primary">提 交</button>&nbsp;&nbsp; <a href="/system-parameter/list?paramType=$!{form.paramType}" class="btn btn-default">取 消</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	#parse("common/footer.html")
+	<script src="$!{form.staticResourceDomain}/js/jquery.uploadify.js?t=$!{form.nanoTime}"></script>
+    <script type="text/javascript">
+	  $(function() {
+	  	var prodPicWarp = $("#prodPicWarp");
+	  	
+	      $('#file-upload-input').uploadify({
+	    	  'fileObjName' : 'file',
+	    	  'width' : 128,
+	      	  'height' : 32,
+	          'swf'      : '/js/uploadify.swf',    //指定上传控件的主体文件
+	          'uploader' : '/brand/upload.json',   //指定服务器端上传处理文件
+	          'buttonText': '上传Logo',
+	          'buttonClass': 'link-like',
+	          'onUploadSuccess' :function(file,data,isResponse){
+	  				if(isResponse){
+	  					data = $.parseJSON(data);
+	  					if(data.status == 200){
+	  						$("#upload-file").attr("src",data.fileURL);
+	  						$("input[name='tempId']").val(data.fileId)
+	  					}else{
+	  						userUploadFileError.text(data.file);
+	  					}
+	  				}	
+	  			}
+	      });
+	  });
+	</script>
+	<script src="$!{form.staticResourceDomain}/js/ueditor/ueditor.config.js"></script>
+    	<script src="$!{form.staticResourceDomain}/js/ueditor/ueditor.all.min.js"></script>
+    	<script src="$!{form.staticResourceDomain}/js/ueditor/lang/zh-cn/zh-cn.js"></script>
+    	<script>
+        var ue = UE.getEditor('editor',{
+            toolbars: [
+                [ 'fontfamily', 'fontsize', 'bold','underline','|', 'link','unlink','forecolor', 'indent', 'insertorderedlist', 'insertunorderedlist','undo', 'redo']
+            ],
+            elementPathEnabled:false,
+            wordCount:false,
+            enableAutoSave : false
+
+        });
+    	</script>
+</body>
+
+</html>

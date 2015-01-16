@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>#parse("common/head.html")
+</head>
+
+<body>
+	#parse("common/header.html")
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-md-2 sidebar">
+				<ul class="nav nav-sidebar">
+					<li><strong><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;类目管理</strong></li>
+					<li class="active"><a href="/category-info/list">类目列表</a></li>
+					<li><a href="/category-info/add">类目新增</a></li>
+					<li><a href="#">类目属性列表</a></li>
+					<li><a href="#">类目属性新增</a></li>
+					<li><a href="#">类目属性值列表</a></li>
+					<li><a href="#">类目属性值新增</a></li>
+				</ul>
+			</div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<div class="page-header">
+					<h2>类目列表</h2>
+				</div>
+
+				<div class="table-responsive">
+					<table class="table table-hover table-bordered">
+						<thead>
+							<tr>
+								<th class="p4"><input id="checkbox-all" type="checkbox"></th>
+								<th>类目英文名</th>
+								<th>类目中文名</th>
+								<th>类目级别</th>
+								<th>类目状态</th>
+								<th class="p6">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th><input class="checkbox-item" type="checkbox" name="ids" value="1"></th>
+								<td>Lorem</td>
+								<td>ipsum</td>
+								<td>dolor</td>
+								<td>sit</td>
+								<td><a href="/category-info/edit?id=$!{category.id}" title="编辑"><span class="glyphicon glyphicon-edit"></span></a></td>
+							</tr>
+							<tr>
+								<th><input class="checkbox-item" type="checkbox" name="ids" value="2"></th>
+								<td>Lorem</td>
+								<td>ipsum</td>
+								<td>dolor</td>
+								<td>sit</td>
+								<td><a href="/category-info/edit?id=$!{category.id}" title="编辑"><span class="glyphicon glyphicon-edit"></span></a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	#parse("common/footer.html")
+	<script type="text/javascript">
+		(function($) {
+			$("#checkbox-all").on("click", function() {
+				if ($(this).prop("checked")) {
+					$("tbody").find(":checkbox").attr("checked", true);
+					$("tbody > tr").addClass("warning");
+				} else {
+					$("tbody").find(":checkbox").attr("checked", false);
+					$("tbody > tr").removeClass("warning");
+				}
+			});
+			$(".checkbox-item").on("click", function() {
+				if ($(this).prop("checked")) {
+					$(this).find(":checkbox").attr("checked", true);
+					$(this).parent().parent().addClass("warning");
+				} else {
+					$(this).find(":checkbox").attr("checked", false);
+					$(this).parent().parent().removeClass("warning");
+				}
+			});
+		})($);
+	</script>
+</body>
+
+</html>

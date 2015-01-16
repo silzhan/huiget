@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		#parse("common/head.html")
+	</head>
+	
+	<body>
+	
+	#parse("common/header.html")
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="col-lg-6" style="padding: 0">
+					<div id="carousel-prod-captions" class="carousel slide" data-ride="carousel">
+					     <ol class="carousel-indicators">
+					       <li data-target="#carousel-prod-captions" data-slide-to="0" class="active"></li>
+					       <li data-target="#carousel-prod-captions" data-slide-to="1"></li>
+					       <li data-target="#carousel-prod-captions" data-slide-to="2"></li>
+					       <li data-target="#carousel-prod-captions" data-slide-to="3"></li>
+					       <li data-target="#carousel-prod-captions" data-slide-to="4"></li>
+					       <li data-target="#carousel-prod-captions" data-slide-to="5"></li>
+					     </ol>
+					     <div class="carousel-inner" role="listbox">
+					       <div class="item active">
+					         <a target="blank" href="http://www.tmall.com/go/market/promotion-act/zy.php?ali_trackid="><img src="/images/banner/年度盛宴.PNG"></a>
+					       </div>
+					       <div class="item">
+					         <a target="blank" href="http://www.tmall.com/go/market/shishang/tk.php?ali_trackid="><img src="/images/banner/生活百货专场.PNG"></a>
+					       </div>
+					       <div class="item">
+					         <a target="blank" href="http://www.tmall.com/go/market/promotion-act/meizhuang.php?ali_trackid"><img src="/images/banner/美妆达人最爱买.PNG"></a>
+					       </div>
+					       <div class="item">
+					         <a target="blank" href="http://www.tmall.com/go/market/jiazhuang/jzqc.php?ali_trackid="><img src="/images/banner/大牌热销排行榜.PNG"></a>
+					       </div>
+					       <div class="item">
+					         <a target="blank" href="http://www.tmall.com/go/market/shuma/3c.php?ali_trackid="><img src="/images/banner/大牌盛典.PNG"></a>
+					       </div>
+					       <div class="item">
+					         <a target="blank" href="http://www.tmall.com/go/market/promotion-act/fushitaoke.php?ali_trackid="><img src="/images/banner/年终清仓.PNG"></a>
+					       </div>
+					     </div>
+					     <a class="left carousel-control" href="#carousel-prod-captions" role="button" data-slide="prev">
+					       <span class="glyphicon glyphicon-chevron-left"></span>
+					       <span class="sr-only">Previous</span>
+					     </a>
+					     <a class="right carousel-control" href="#carousel-prod-captions" role="button" data-slide="next">
+					       <span class="glyphicon glyphicon-chevron-right"></span>
+					       <span class="sr-only">Next</span>
+					     </a>
+					</div>
+				</div>
+				<div class="col-lg-6 small-bannel" style="padding: 0">
+					<a target="blank" href="http://vip.tmall.com/?pos=1#coupon2014"><img style="height: 235px;width: 142px;" src="http://gtms04.alicdn.com/tps/i4/TB1s_STGFXXXXXnXXXXc8PZ9XXX-130-200.png" /></a>
+					<a target="blank" href="http://www.tmall.com/go/market/promotion-act/yushouhuwai.php?pos=1"><img style="height: 235px;width: 141px;" src="http://gtms03.alicdn.com/tps/i3/TB1SHOIGFXXXXboXVXXc8PZ9XXX-130-200.png" /></a>
+					<a target="blank" href="http://www.tmall.com/go/market/promotion-act/ysjfjs.php?pos=1"><img style="height: 235px;width: 142px;" src="http://gtms02.alicdn.com/tps/i2/TB18s1FGFXXXXcjXXXXc8PZ9XXX-130-200.png" /></a>
+					<a target="blank" href="http://www.tmall.com/go/market/promotion-act/tmallhk_2014_1111_pre.php?pos=1#floor-usa"><img style="height: 235px;width: 141px;" src="http://gtms01.alicdn.com/tps/i1/TB1w5N2GFXXXXaIXpXXc8PZ9XXX-130-200.png" /></a>
+				</div>
+			</div>
+			
+			#foreach($channel in $form.productsByChannel.keySet())
+			#set($products = $form.productsByChannel.get($channel))
+			<div class="col-lg-12">
+				<div class="page-header">
+                    <h2>$!{form.allChannel[$channel].name}</h2>
+                </div>
+                <ul class="prod-items">
+	                #foreach($product in $products)
+	                #if($velocityCount%4 ==1)
+	                <li>
+	                #end
+	                <div class="col-lg-3">
+		                <div class="prod-item">
+		                	<p><a href="$!{product.detailLink}" target="blank"><img src="$!{product.prodPic}" alt="$!{product.prodName}" /></a></p>
+		                    <p class="prod-name"><a href="$!{product.detailLink}" title="$!{product.prodName}">$!{product.prodName}</a></p>
+		                    <p>市场价：<span class="price">¥ $!{product.priceForShow}</span><br><strong>双12价：</strong><span class="discount-price">¥ $!{product.discountPriceForShow}</span></p>
+		                </div>
+					</div>
+					#if($velocityCount%4 ==0)
+	                </li>
+	                #end
+					#end
+				</ul>
+				#if($form.products.size()%4 !=0)
+	                </li>
+	            #end
+			</div>
+			#end
+		</div>
+	</div>
+	
+	#parse("common/footer.html")
+	
+	</body>
+
+</html>

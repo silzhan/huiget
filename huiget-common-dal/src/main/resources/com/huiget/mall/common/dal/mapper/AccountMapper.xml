@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huiget.mall.common.dal.mapper.AccountMapper">
+	
+    <resultMap type="account" id="accountResult">
+    	<result property="id" column="id"/>
+		<result property="userId" column="user_id"/>
+		<result property="acctType" column="acct_type"/>
+		<result property="capType" column="cap_type"/>
+		<result property="curyType" column="cury_type"/>
+		<result property="acctName" column="acct_name"/>
+		<result property="acctBal" column="acct_bal"/>
+		<result property="avlBal" column="avl_bal"/>
+		<result property="frzBal" column="frz_bal"/>
+		<result property="acctStatus" column="acct_status"/>
+		<result property="createTime" column="create_time" />
+		<result property="creator" column="creator" />
+		<result property="lastUpdateTime" column="last_update_time" />
+		<result property="updater" column="updater" />
+	</resultMap>
+    
+    <select id="queryByUserIdAndAcctType" resultMap="accountResult">
+       select id, user_id, acct_type, cap_type, cury_type, acct_name, acct_bal, avl_bal, frz_bal, acct_status, create_time, creator, last_update_time, updater
+	       from account where user_id = #{userId} and acct_type = #{acctType}
+    </select>
+    
+    <select id="queryAndLockByUserIdAndAcctType" resultMap="accountResult">
+       select id, user_id, acct_type, cap_type, cury_type, acct_name, acct_bal, avl_bal, frz_bal, acct_status, create_time, creator, last_update_time, updater
+	       from account where user_id = #{userId} and acct_type = #{acctType} for update
+    </select>
+    
+    <insert id="insert" parameterType="account">
+		insert into account (user_id, acct_type, cap_type, cury_type, acct_name, acct_bal, avl_bal, frz_bal, acct_status, create_time, creator, last_update_time, updater) 
+		values (#{userId}, #{acctType}, #{capType}, #{curyType}, #{acctName}, #{acctBal}, #{avlBal}, #{frzBal}, #{acctStatus}, #{createTime}, #{creator}, #{lastUpdateTime}, #{updater})
+	</insert>
+	
+	<update id="updateAccountBal" parameterType="account">
+		update account set acct_bal = #{acctBal}, avl_bal = #{avlBal}, frz_bal = #{frzBal}, last_update_time = #{lastUpdateTime}, updater = #{updater} where id = #{id} and user_id = #{userId}
+	</update>
+
+</mapper>

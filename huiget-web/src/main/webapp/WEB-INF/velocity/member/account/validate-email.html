@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		#parse("common/head.html")
+	</head>
+	
+	<body>
+	
+	#parse("common/header.html")
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2 sidebar">
+				#parse("common/nav-sidebar.html")
+			</div>
+			<div class="col-md-10 main">
+				<div class="page-header">
+					<h4>#if($form.user.emailValidated == '1')修改邮箱#else验证邮箱#end</h4>
+				</div>
+				<form class="form-horizontal" role="form" action="/member/account/validate-email" method="post">
+					<div class="form-group">
+						<label for="email" class="col-sm-2 control-label"><span class="red">*</span>邮箱地址：</label>
+						<div class="col-sm-3">
+							<input type="email" class="full-input-sm" id="email" name="email" value="$!{form.email}" maxlength="50" placeholder="">
+						</div>
+						<p class="help-block red">$!{form.errors["email"]}</p>
+					</div>
+					<div class="form-group">
+						<label for="checkcode" class="col-sm-2 control-label"><span class="red">*</span>验证码：</label>
+						<div class="col-sm-3">
+							<input type="text" class="checkcode-sm" id="checkcode" name="checkcode" value="$!{form.checkcode}" placeholder="验证码">
+							<img src="/checkcode.jpg?t=${form.nanoTime}" id="checkcode-img-sm" alt="验证码" class="pull-right"/>
+						</div>
+						<p class="help-block red">$!{form.errors["checkcode"]}</p>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-4">
+							<button type="submit" class="btn btn-warning">提交</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	#parse("common/footer.html")
+	<script type="text/javascript">
+		(function($,window){
+			$("#checkcode-img-sm").on("click",function(){
+				$(this).attr("src","/checkcode.jpg?t=" + new Date().getTime());
+			});
+		})($,window);
+	</script>
+	
+	
+	</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		#parse("common/head.html")
+	</head>
+	
+	<body>
+	
+	#parse("common/header.html")
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2 sidebar">
+				#parse("common/nav-sidebar.html")
+			</div>
+			<div class="col-md-10 main">
+				<div class="page-header">
+					<h4>验证邮箱</h4>
+				</div>
+				<p class="oper-notice">
+					<i class="icon icon-material-check icon-success"></i> 验证邮件已发送您的邮箱<strong>$!{form.email}</strong>，请点击邮件中的链接验证邮箱
+				</p>
+				<p class="oper-notice">
+					<a href="/member/account/active-email?checkcode=$!{form.checkcode}" class="btn btn-success">去邮箱查看</a>
+				</p>
+			</div>
+		</div>
+	</div>
+	
+	#parse("common/footer.html")
+	</body>
+
+</html>

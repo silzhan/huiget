@@ -1,0 +1,12 @@
+#if($form.categories && $form.categories.size() > 0)
+<div class="col-md-2 sidebar">
+	<ul class="nav nav-sidebar">
+		<li><strong><i class="icon icon-material-view-list"></i> 全部商品分类</strong></li>
+		#foreach($category in $form.categories)
+			#if($category.level != 1)
+			<li><a href="/catalog/$!{category.nameUrl}">$!{category.nameCn}</a></li>
+			#end
+		#end
+	</ul>
+</div>
+#end

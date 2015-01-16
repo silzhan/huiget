@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huiget.mall.common.dal.mapper.MenuMapper">
+
+	<resultMap type="menu" id="menuResult">
+		<result property="id" column="id" />
+		<result property="uri" column="uri" />
+		<result property="name" column="name" />
+		<result property="level" column="level" />
+		<result property="parentId" column="parent_id" />
+		<result property="weight" column="weight" />
+		<result property="createTime" column="create_time" />
+		<result property="creator" column="creator" />
+		<result property="lastUpdateTime" column="last_update_time" />
+		<result property="updater" column="updater" />
+	</resultMap>
+	
+	<select id="queryNextIdByParentId" resultType="int">
+		SELECT
+			<if test="parentId == 0">IFNULL((MAX(id) + 1), 10) next_id</if>
+			<if test="parentId != 0">IFNULL((MAX(id) + 1),  #{parentId} * 100) next_id</if>
+		FROM
+			menu
+		WHERE
+			parent_id = #{parentId}
+	</select>
+	
+	<insert id="insert" parameterType="menu">
+		insert into menu (id, uri, name, level, parent_id, weight, create_time, creator, last_update_time, updater)
+		values
+		(#{id}, #{uri}, #{name}, #{level}, #{parentId}, #{weight}, #{createTime}, #{creator}, #{lastUpdateTime}, #{updater})
+	</insert>
+	
+	<select id="queryById" resultMap="menuResult">
+       select id, uri, name, level, parent_id, weight, create_time, creator, last_update_time, updater
+       from menu where id = #{id}
+    </select>
+    
+	<select id="queryAll" resultMap="menuResult">
+		select id, uri, name, level, parent_id, weight, create_time, creator, last_update_time, updater
+	   from menu order by weight desc, level, create_time desc
+	</select>
+    
+    <select id="queryForPage" resultMap="menuResult">
+	   select id, uri, name, level, parent_id, weight, create_time, creator, last_update_time, updater
+	   from menu order by weight desc, level, create_time desc LIMIT #{begin},#{end}
+    </select>
+    
+    <select id="count" resultType="int">
+		select count(1) from menu
+	</select>
+	
+    <delete id="deleteById">
+		delete from menu where id = #{id}
+	</delete>
+	
+    <update id="update" parameterType="menu">
+		update menu set uri = #{uri}, name = #{name}, level = #{level}, parent_id = #{parentId}, weight = #{weight},
+		last_update_time = #{lastUpdateTime}, updater = #{updater} where id = #{id}
+	</update>
+
+</mapper>

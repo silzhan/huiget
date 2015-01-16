@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>#parse("common/head.html")
+</head>
+
+<body>
+	#parse("common/header.html")
+	<div class="container">
+		<div class="row">
+			#parse("common/sidebar.html")
+			<div class="col-md-10 main">
+				<div class="page-header">
+					<h4>网站设置信息新增</h4>
+				</div>
+				<form class="form-horizontal" role="form" action="/meta/add" method="post">
+					<div class="form-group">
+						<label for="uri" class="col-sm-2 control-label">URI：</label>
+						<div class="col-sm-3">
+							<input type="text" class="full-input-sm" name="uri" id="uri" value="$!{form.uri}" placeholder="URI" required="required"> <span class="help-block err">$!{form.errors["uri"]}</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="title" class="col-sm-2 control-label">Title：</label>
+						<div class="col-sm-3">
+							<input type="text" class="full-input-sm" name="title" id="title" value="$!{form.title}" placeholder="title">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="keywords" class="col-sm-2 control-label">Keywords：</label>
+						<div class="col-sm-4">
+							<input type="text" class="full-input-sm" name="keywords" id="keywords" value="$!{form.keywords}" placeholder="keywords">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="description" class="col-sm-2 control-label">Description：</label>
+						<div class="col-sm-5">
+							<textarea rows="4" class="full-input-sm" name="description" id="description" placeholder="description">$!{form.description}</textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-4">
+							<input type="submit" value="提 交" id="btn-submit" class="btn btn-primary" />&nbsp;&nbsp; <a href="/meta/list" class="btn btn-default">取 消</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	#parse("common/footer.html")
+</body>
+
+</html>

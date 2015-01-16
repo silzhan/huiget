@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>#parse("common/head.html")
+</head>
+
+<body>
+	#parse("common/header.html")
+	<div class="container">
+		<div class="row">
+			#parse("common/sidebar.html")
+			<div class="col-md-10 main">
+				<div class="page-header">
+					<h4>类目属性新增</h4>
+				</div>
+				<form class="form-horizontal" role="form" action="/category-property/add.json" method="post">
+					<div class="form-group">
+						<label for="keywords" class="col-sm-2 control-label">类目选择：</label>
+						<div class="col-sm-4">
+							#foreach($category in $form.categories)
+								#if($category.level == 1)
+								<div class="radio">
+									<label><strong>$!{category.nameEn}/$!{category.nameCn}</strong></label>
+								</div>
+								#else
+								<div class="radio">
+									<label for="category_$!{category.id}"><input type="radio" name="categoryId" id="category_$!{category.id}" value="$!{category.id}">$!{category.nameEn}/$!{category.nameCn}</label>
+								</div>
+								#end
+							#end
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="name" class="col-sm-2 control-label">类目属性名称：</label>
+						<div class="col-sm-3">
+							<input type="text" class="full-input-sm" name="name" id="name" value="$!{form.name}" placeholder="角色名称">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="weight" class="col-sm-2 control-label">权重：</label>
+						<div class="col-sm-3">
+							<input type="text" class="full-input-sm" name="weight" id="weight" value="$!{form.weight}" placeholder="权重：0~999数字">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="status" class="col-sm-2 control-label">状态：</label>
+						<div class="col-sm-3">
+							<label class="radio-inline"> <input type="radio" #if($form.status==1) checked="checked" #end name="status" id="status1" value="1" /> 有效
+							</label> <label class="radio-inline"> <input type="radio" #if($form.status==0) checked="checked" #end name="status" id="status0" value="0" /> 无效
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-4">
+							<input type="button" value="确 定" id="btn-submit" class="btn btn-primary" />&nbsp;&nbsp; <a href="/category-property/list" class="btn btn-default">取 消</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	#parse("common/footer.html")
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		#parse("common/head.html")
+	</head>
+	
+	<body>
+	
+	#parse("common/header.html")
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2 sidebar">
+				#parse("common/nav-sidebar.html")
+			</div>
+			<div class="col-md-10 main">
+				<div class="page-header">
+					<h4>#if($form.user.mobilePhoneValidated == '1')修改手机#else验证手机#end</h4>
+				</div>
+				<form class="form-horizontal" role="form" action="/member/account/validate-mobilephone" method="post">
+					<div class="form-group">
+						<label for="mobilePhone" class="col-sm-2 control-label"><span class="red">*</span>手机号码：</label>
+						<div class="col-sm-3">
+							<input type="text" class="full-input-sm" id="mobilePhone" name="mobilePhone" value="$!{form.mobilePhone}" maxlength="20" placeholder="">
+						</div>
+						<p class="help-block red">$!{form.errors["mobilePhone"]}</p>
+					</div>
+					<div class="form-group">
+						<label for="checkcode" class="col-sm-2 control-label"><span class="red">*</span>验证码：</label>
+						<div class="col-sm-3">
+							<input type="text" class="checkcode-sm" id="checkcode" name="checkcode" value="$!{form.checkcode}" placeholder="验证码">
+							<img src="/checkcode.jpg?t=${form.nanoTime}" id="checkcode-img-sm" alt="验证码" class="pull-right"/>
+						</div>
+						<p class="help-block red">$!{form.errors["checkcode"]}</p>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-4">
+							<button type="submit" class="btn btn-warning">提交</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	#parse("common/footer.html")
+	<script type="text/javascript">
+		(function($,window){
+			$("#checkcode-img-sm").on("click",function(){
+				$(this).attr("src","/checkcode.jpg?t=" + new Date().getTime());
+			});
+		})($,window);
+	</script>
+	
+	
+	</body>
+
+</html>

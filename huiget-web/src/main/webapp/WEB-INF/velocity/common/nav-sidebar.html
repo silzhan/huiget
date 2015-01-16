@@ -1,0 +1,12 @@
+<ul class="nav nav-sidebar">
+	<li><strong><i class="icon icon-material-shopping-cart"></i> 交易管理</strong></li>
+	<li #if($form.requestURI == '/member/trade/orders') class="active" #end><a href="/member/trade/orders">我的订单</a></li>
+	<li #if($form.requestURI == '/member/trade/cart') class="active" #end><a target="blank" href="/member/trade/cart">我的购物车</a></li>
+	<li #if($form.requestURI == '/member/trade/favorites') class="active" #end><a href="/member/trade/favorites">我的收藏</a></li>
+	<li #if($form.requestURI == '/member/trade/recommend') class="active" #end><a href="/member/trade/recommend">推荐商品</a></li>
+	
+	<li><strong><i class="icon icon-material-settings"></i> 账号管理</strong></li>
+	<li #if($form.requestURI == '/member/account/profile') class="active" #end><a href="/member/account/profile">个人资料</a></li>
+	<li #if($form.requestURI == '/member/account/account-safe' || $form.requestURI == '/member/account/modify-password' || $form.requestURI == '/member/account/set-trans-password' || $form.requestURI == '/member/account/modify-trans-password' || $form.requestURI == '/member/account/validate-email' || $form.requestURI == '/member/account/validate-email-notice' || $form.requestURI == '/member/account/validate-mobilephone' || $form.requestURI == '/member/account/validate-mobilephone-notice' || $form.requestURI == '/member/account/active-mobilephone') class="active" #end><a href="/member/account/account-safe">账户安全</a></li>
+	<li #if($form.requestURI == '/member/account/deliver-address') class="active" #end><a href="/member/account/deliver-address">收货地址</a></li>
+</ul>

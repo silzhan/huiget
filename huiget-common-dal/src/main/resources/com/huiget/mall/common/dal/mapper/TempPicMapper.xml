@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huiget.mall.common.dal.mapper.TempPicMapper">
+	
+    <resultMap type="tempPic" id="tempPicResult">
+    	<result property="id" column="id"/>
+		<result property="type" column="type"/>
+		<result property="path" column="path"/>
+		<result property="suffix" column="suffix"/>
+		<result property="width" column="width"/>
+		<result property="height" column="height"/>
+		<result property="createTime" column="create_time"/>
+	</resultMap>
+    
+    <select id="queryById" resultMap="tempPicResult">
+       select id, type, path, suffix, width, height, create_time from temp_pic where id = #{id}
+    </select>
+    
+    <select id="queryByIds" resultMap="tempPicResult">
+	    select id, type, path, suffix, width, height, create_time from temp_pic where id in 
+	    <foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> 
+            #{item} 
+        </foreach>
+    </select>
+    
+    <insert id="insert" parameterType="tempPic" useGeneratedKeys="true" keyProperty="id">
+		insert into temp_pic (type, path, suffix, width, height, create_time) 
+		values (#{type}, #{path}, #{suffix}, #{width}, #{height}, #{createTime})
+	</insert>
+	
+	<delete id="deleteById">
+		delete from temp_pic where id = #{id}
+	</delete>
+
+</mapper>

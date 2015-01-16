@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!--对完全限定名较长的类，可在这里对其起别名（一般取类名），供mapper文件使用 -->
+	<typeAliases>
+		<typeAlias type="com.baoseed.mall.common.dal.entity.Demo" alias="baoseed" />
+	</typeAliases>
+
+</configuration> 

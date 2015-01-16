@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>#parse("common/head.html")
+</head>
+
+<body>
+	#parse("common/header.html")
+	<div class="container-fluid">
+		<div class="row">
+			#parse("common/sidebar.html")
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<div class="page-header">
+					<h2>类目新增</h2>
+				</div>
+				<form class="form-horizontal" role="form" action="/meta/edit" method="post">
+					<div class="form-group">
+						<label for="nameEn" class="col-sm-2 control-label">英文名</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" id="nameEn" name="nameEn" placeholder="类目英文名" required="required">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="nameCn" class="col-sm-2 control-label">中文名</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" id="nameCn" name="nameCn" placeholder="类目中文名" required="required">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="level" class="col-sm-2 control-label">类目级别</label>
+						<div class="col-sm-4">
+							<select class="form-control" id="level" name="level">
+								<option value="1">一级类目</option>
+								#if($form.categories && $form.categories.size() > 0)
+								<option value="2">二级类目</option>
+								#end
+							</select>
+						</div>
+					</div>
+					#if($form.categories && $form.categories.size() > 0)
+					<div class="form-group" id="parentIdWarp">
+						<label for="parentId" class="col-sm-2 control-label">上级类目</label>
+						<div class="col-sm-4">
+							<select class="form-control" id="parentId" name="parentId">
+								#foreach($category in $form.categories)
+								<option value="$!{category.id}">$!{category.nameEn}/$!{category.nameCn}</option>
+								#end
+							</select>
+						</div>
+					</div>
+					#end
+					<div class="form-group">
+						<label for="weight" class="col-sm-2 control-label">权重</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" name="weight" id="weight" value="$!{form.weight}" placeholder="权重：0~999数字">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="status" class="col-sm-2 control-label">状态</label>
+						<div class="col-sm-4">
+							<label class="radio-inline"> <input type="radio" #if($form.status==1) checked="checked" #end name="status" id="status1" value="1" /> 有效
+							</label> <label class="radio-inline"> <input type="radio" #if($form.status==0) checked="checked" #end name="status" id="status0" value="0" /> 无效
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit" class="btn btn-warning">提 交</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	#parse("common/footer.html")
+	<script type="text/javascript">
+	$(function() {
+		if ($("#parentIdWarp")) {
+			if($("#level").val() == 1){
+				$("#parentIdWarp").hide();
+			}
+			$("#level").on("click", function() {
+				if ($(this).val() == 1) {
+					$("#parentIdWarp").hide();
+				} else {
+					$("#parentIdWarp").show();
+				}
+			});
+		}
+	});
+	</script>
+</body>
+
+</html>

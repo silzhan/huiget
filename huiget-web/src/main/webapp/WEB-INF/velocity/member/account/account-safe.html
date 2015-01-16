@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		#parse("common/head.html")
+		<style type="text/css">
+			.account-safe-table{
+				color: #777;
+			}
+			.account-safe-table .account-safe-check{
+				color: #333;
+			}
+			.account-safe-table tbody tr th,.account-safe-table tbody tr td{
+				line-height: 30px;
+				padding-top: 20px;
+				padding-bottom: 20px;
+			}
+			.account-safe-table tbody tr th{
+				font-size: 16px;
+			}
+		</style>
+	</head>
+	
+	<body>
+	
+	#parse("common/header.html")
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2 sidebar">
+				#parse("common/nav-sidebar.html")
+			</div>
+			<div class="col-md-10 main">
+				<div class="page-header">
+					<h4>账户安全</h4>
+				</div>
+				
+				<table class="table account-safe-table">
+					<tbody>
+						<tr class="account-safe-check">
+							<th style="border: 0;"><i class="icon icon-material-check icon-success"></i> 登录密码</th>
+							<td style="border: 0;">互联网账号存在被盗风险，建议您定期更改密码以保护账户安全。</td>
+							<td style="border: 0;">
+								<a href="/member/account/modify-password" class="btn btn-success">修改</a>
+							</td>
+						</tr>
+						#if($form.user.emailValidated == '1')
+						<tr class="account-safe-check">
+							<th><i class="icon icon-material-check icon-success"></i> 邮箱验证</th>
+							<td>验证后，可用于快速找回登录密码及支付密码，接收账户余额变动提醒。<br/>您验证的邮箱：<strong>$!{form.user.email}</strong></td>
+							<td>
+								<a href="/member/account/validate-email" class="btn btn-success">修改</a>
+							</td>
+						</tr>
+						#else
+						<tr>
+							<th><i class="icon icon-material-warning icon-warning"></i> 邮箱验证</th>
+							<td>验证后，可用于快速找回登录密码及支付密码，接收账户余额变动提醒。<br/>待验证的邮箱：<strong>$!{form.user.email}</strong></td>
+							<td>
+								<a href="/member/account/validate-email" class="btn btn-warning">验证</a>
+							</td>
+						</tr>
+						#end
+						#if($form.user.mobilePhoneValidated == '1')
+						<tr class="account-safe-check">
+							<th><i class="icon icon-material-check icon-success"></i> 手机验证</th>
+							<td>验证后，可用于快速找回登录密码及支付密码，接收账户余额变动提醒。<br/>您验证的手机：<strong>$!{form.user.mobilePhone}</strong></td>
+							<td><a href="/member/account/validate-mobilephone" class="btn btn-success">修改</a></td>
+						</tr>
+						#else
+						<tr>
+							<th><i class="icon icon-material-warning icon-warning"></i> 手机验证</th>
+							<td>验证后，可用于快速找回登录密码及支付密码，接收账户余额变动提醒。<br/>待验证的手机：<strong>$!{form.user.mobilePhone}</strong></td>
+							<td>
+								<a href="/member/account/validate-mobilephone" class="btn btn-warning">验证</a>
+							</td>
+						</tr>
+						#end
+						#if(!$form.user.transPassword || $form.user.transPassword == '')
+						<tr>
+							<th><i class="icon icon-material-warning icon-warning"></i> 支付密码</th>
+							<td>设置后，在账户资金变动、修改账户信息时需要输入的密码。</td>
+							<td>
+								<a href="/member/account/set-trans-password" class="btn btn-warning">设置</a>
+							</td>
+						</tr>
+						#else
+						<tr class="account-safe-check">
+							<th><i class="icon icon-material-check icon-success"></i> 支付密码</th>
+							<td>设置后，在账户资金变动、修改账户信息时需要输入的密码。</td>
+							<td>
+								<a href="/member/account/modify-trans-password" class="btn btn-success">修改</a>
+							</td>
+						</tr>
+						#end
+					</tbody>
+				</table>
+				
+			</div>
+		</div>
+	</div>
+	
+	#parse("common/footer.html")
+	
+	
+	</body>
+
+</html>

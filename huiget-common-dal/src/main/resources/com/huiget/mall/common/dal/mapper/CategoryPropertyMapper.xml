@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huiget.mall.common.dal.mapper.CategoryPropertyMapper">
+
+	<resultMap type="categoryProperty" id="categoryPropertyResult">
+		<result property="id" column="id" />
+		<result property="categoryId" column="category_id" />
+		<result property="name" column="name" />
+		<result property="status" column="status" />
+		<result property="weight" column="weight" />
+		<result property="createTime" column="create_time" />
+		<result property="creator" column="creator" />
+		<result property="lastUpdateTime" column="last_update_time" />
+		<result property="updater" column="updater" />
+	</resultMap>
+
+	<insert id="insert" parameterType="categoryProperty">
+		insert into category_property (category_id, name, status, weight, create_time, creator, last_update_time, updater)
+		values (#{categoryId}, #{name}, #{status}, #{weight}, #{createTime}, #{creator}, #{lastUpdateTime}, #{updater})
+	</insert>
+
+	<select id="queryById" resultMap="categoryPropertyResult">
+		select id, category_id, name, status, weight, create_time, creator, last_update_time, updater
+		from category_property where id = #{id}
+	</select>
+
+	<select id="queryAll" resultMap="categoryPropertyResult">
+		select id, category_id, name, status, weight, create_time, creator, last_update_time, updater
+		from category_property order by category_id, weight desc
+	</select>
+
+	<select id="queryByStatus" resultMap="categoryPropertyResult">
+		select id, category_id, name, status, weight, create_time, creator, last_update_time, updater
+		from category_property where status = #{status} order by category_id, weight desc
+	</select>
+
+	<select id="queryByCategoryIdAndStatus" resultMap="categoryPropertyResult">
+		select id, category_id, name, status, weight, create_time, creator, last_update_time, updater
+		from category_property where category_id = #{categoryId} and status = #{status} order by weight desc
+	</select>
+
+	<select id="queryForPage" resultMap="categoryPropertyResult">
+		select id, category_id, name, status, weight, create_time, creator, last_update_time, updater
+		from category_property order by category_id, weight desc LIMIT #{begin},#{end}
+	</select>
+
+	<select id="count" resultType="int">
+		select count(1) from category_property
+	</select>
+
+	<delete id="deleteById">
+		delete from category_property where id = #{id}
+	</delete>
+
+	<update id="update" parameterType="categoryProperty">
+		update category_property set category_id = #{categoryId}, name = #{name}, status = #{status},
+		weight = #{weight}, last_update_time = #{lastUpdateTime}, updater = #{updater} where id = #{id}
+	</update>
+
+</mapper>

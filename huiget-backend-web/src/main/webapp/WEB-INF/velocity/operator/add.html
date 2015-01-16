@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>#parse("common/head.html")
+</head>
+
+<body>
+	#parse("common/header.html")
+	<div class="container-fluid">
+		<div class="row">
+			#parse("common/sidebar.html")
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<div class="page-header">
+					<h2>操作员新增</h2>
+				</div>
+				<form class="form-horizontal" role="form" action="/operator/add.json" method="post">
+					<div class="form-group">
+						<label for="userName" class="col-sm-2 control-label">用户名</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" name="userName" id="userName" value="$!{form.userName}" placeholder="用户名">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="password" class="col-sm-2 control-label">密码</label>
+						<div class="col-sm-4">
+							<input type="password" class="form-control" name="password" id="password" value="$!{form.password}">
+						</div>
+					</div>
+					<div class="form-group">
+					    <label for="description" class="col-sm-2 control-label">角色选择</label>
+					    <div class="col-sm-4">
+					      	#foreach($role in $form.roles)
+								<div class="checkbox">
+									<label for="role_$!{role.id}"><input type="checkbox" name="roleId" id="role_$!{role.id}" value="$!{role.id}">$!{role.name}</label>
+								</div>
+							#end
+					    </div>
+					</div>
+					<div class="form-group">
+						<label for="status" class="col-sm-2 control-label">状态</label>
+						<div class="col-sm-4">
+							<label class="radio-inline"> <input type="radio" #if($form.status==1) checked="checked" #end name="status" id="status1" value="1" /> 有效
+							</label> <label class="radio-inline"> <input type="radio" #if($form.status==0) checked="checked" #end name="status" id="status0" value="0" /> 无效
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="name" class="col-sm-2 control-label">姓名</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" name="name" id="name" value="$!{form.name}" placeholder="姓名">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="number" class="col-sm-2 control-label">编号</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" name="number" id="number" value="$!{form.number}" placeholder="编号">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="department" class="col-sm-2 control-label">部门</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" name="department" id="department" value="$!{form.department}" placeholder="部门">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="remark" class="col-sm-2 control-label">备注</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" name="remark" id="remark" value="$!{form.remark}" placeholder="备注">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-4">
+							<input type="button" value="确 定" id="btn-submit" class="btn btn-warning" />&nbsp;&nbsp; <a href="/operator/list" class="btn btn-default">取 消</a>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-4">
+							<div class="alert alert-success tip-success" role="alert"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;信息保存成功</div>
+							<div class="alert alert-danger tip-danger" role="alert"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;信息保存失败</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	#parse("common/footer.html")
+</body>
+
+</html>

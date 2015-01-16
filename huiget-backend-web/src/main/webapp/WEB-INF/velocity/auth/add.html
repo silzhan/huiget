@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>#parse("common/head.html")
+</head>
+
+<body>
+	#parse("common/header.html")
+	<div class="container-fluid">
+		<div class="row">
+			#parse("common/sidebar.html")
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<div class="page-header">
+					<h2>菜单新增</h2>
+				</div>
+				<form class="form-horizontal" role="form" action="/auth/add.json" method="post">
+					<div class="form-group">
+						<label for="name" class="col-sm-2 control-label">权限名称</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" name="name" id="name" value="$!{form.name}" placeholder="菜单名称">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="keywords" class="col-sm-2 control-label">权限菜单</label>
+						<div class="col-sm-4">
+							#foreach($menu in $form.menus)
+								<div class="checkbox">
+									#if($menu.level == 2)
+									<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="menuId" id="menu_$!{menu.id}" value="$!{menu.id}">$!{menu.name}</label>
+									#else
+									<label><input type="checkbox" id="menu_$!{menu.id}" name="menuId" value="$!{menu.id}">$!{menu.name}</label>
+									#end
+								</div>
+							#end
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-4">
+							<input type="button" value="确 定" id="btn-submit" class="btn btn-warning" />&nbsp;&nbsp; <a href="/auth/list" class="btn btn-default">取 消</a>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-4">
+							<div class="alert alert-success tip-success" role="alert"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;信息保存成功</div>
+							<div class="alert alert-danger tip-danger" role="alert"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;信息保存失败</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	#parse("common/footer.html")
+</body>
+
+</html>

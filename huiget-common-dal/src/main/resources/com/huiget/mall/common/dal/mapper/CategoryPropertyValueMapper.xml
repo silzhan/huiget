@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huiget.mall.common.dal.mapper.CategoryPropertyValueMapper">
+
+	<resultMap type="categoryPropertyValue" id="categoryPropertyValueResult">
+		<result property="id" column="id" />
+		<result property="propertyId" column="property_id" />
+		<result property="name" column="name" />
+		<result property="value" column="value" />
+		<result property="status" column="status" />
+		<result property="weight" column="weight" />
+		<result property="createTime" column="create_time" />
+		<result property="creator" column="creator" />
+		<result property="lastUpdateTime" column="last_update_time" />
+		<result property="updater" column="updater" />
+	</resultMap>
+
+	<insert id="insert" parameterType="categoryPropertyValue">
+		insert into category_property_value (property_id, name, value, status, weight, create_time, creator, last_update_time, updater)
+		values (#{propertyId}, #{name},
+		#{value}, #{status}, #{weight}, #{createTime}, #{creator}, #{lastUpdateTime}, #{updater})
+	</insert>
+
+	<select id="queryById" resultMap="categoryPropertyValueResult">
+		select id, property_id, name, value, status, weight, create_time, creator, last_update_time, updater from category_property_value
+		where id = #{id}
+	</select>
+
+	<select id="queryForPage" resultMap="categoryPropertyValueResult">
+		select id, property_id, name, value, status, weight, create_time, creator, last_update_time, updater from category_property_value
+		order by property_id, weight desc LIMIT #{begin},#{end}
+	</select>
+
+	<select id="count" resultType="int">
+		select count(1) from category_property_value
+	</select>
+
+	<delete id="deleteById">
+		delete from category_property_value where id = #{id}
+	</delete>
+
+	<update id="update" parameterType="categoryPropertyValue">
+		update category_property_value set property_id = #{propertyId}, name = #{name}, value = #{value},
+		status = #{status}, weight = #{weight}, last_update_time = #{lastUpdateTime}, updater = #{updater} where id = #{id}
+	</update>
+
+</mapper>

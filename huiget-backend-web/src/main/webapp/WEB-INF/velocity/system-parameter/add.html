@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>#parse("common/head.html")
+</head>
+
+<body>
+	#parse("common/header.html")
+	<div class="container">
+		<div class="row">
+			#parse("common/sidebar.html")
+			<div class="col-md-10 main">
+				<div class="page-header">
+					<h4>系统参数新增</h4>
+				</div>
+				<form class="form-horizontal" role="form" action="/system-parameter/add" method="post">
+					<div class="form-group">
+						<label for="paramType" class="col-sm-2 control-label">参数类型：</label>
+						<div class="col-sm-3">
+							#if($form.paramTypeMap && $form.paramTypeMap.size() > 0)
+							<select class="full-input-sm" id="paramType" name="paramType">
+								#foreach($paramType in $form.paramTypeMap.entrySet())
+							  		<option #if($paramType.key==$form.paramType) selected="selected" #end value="$!{paramType.key}">$!{paramType.value}</option>
+		                	  	#end
+							</select>
+							#end
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="paramName" class="col-sm-2 control-label">参数名称：</label>
+						<div class="col-sm-3">
+							<input type="text" class="full-input-sm" id="paramName" name="paramName" placeholder="参数名称">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="paramKey" class="col-sm-2 control-label">参数Key：</label>
+						<div class="col-sm-3">
+							<input type="text" class="full-input-sm" id="paramKey" name="paramKey" placeholder="参数Key">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="paramValue" class="col-sm-2 control-label">参数值：</label>
+						<div class="col-sm-3">
+							<input type="text" class="full-input-sm" id="paramValue" name="paramValue" placeholder="参数值">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="status" class="col-sm-2 control-label">状态：</label>
+						<div class="col-sm-3">
+							<label class="radio-inline"> <input type="radio" #if($form.status==1) checked="checked" #end name="status" id="status1" value="1" /> 有效
+							</label> <label class="radio-inline"> <input type="radio" #if($form.status==0) checked="checked" #end name="status" id="status0" value="0" /> 无效
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-3">
+							<button type="submit" class="btn btn-primary">提 交</button>&nbsp;&nbsp; <a href="/system-parameter/list?paramType=$!{form.paramType}" class="btn btn-default">取 消</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	#parse("common/footer.html")
+	<script type="text/javascript">
+		(function($) {
+		})($);
+	</script>
+</body>
+
+</html>

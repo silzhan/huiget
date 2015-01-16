@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		#parse("common/head.html")
+	</head>
+	
+	<body>
+	
+	#parse("common/header.html")
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2 sidebar">
+				#parse("common/nav-sidebar.html")
+			</div>
+			<div class="col-md-10 main">
+				<div class="page-header">
+					<h4>验证手机</h4>
+				</div>
+				<p class="oper-notice">
+					<i class="icon icon-material-check icon-success"></i> 手机验证码已发送您的手机<strong>$!{form.mobilePhone}</strong>，请输入手机验证码验证手机
+				</p>
+				<form class="form-horizontal" role="form" action="/member/account/active-mobilephone" method="post">
+					<div class="form-group">
+						<label for="checkcode" class="col-sm-5 control-label"><span class="red">*</span>手机验证码：</label>
+						<div class="col-sm-3">
+							<input type="text" class="full-input-sm" id="checkcode" name="checkcode" value="$!{form.checkcode}" placeholder="手机验证码">
+						</div>
+						<p class="help-block red">$!{form.errors["checkcode"]}</p>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-offset-5 col-sm-4">
+							<input type="hidden" name="mobilePhone" value="$!{form.mobilePhone}">
+							<button type="submit" class="btn btn-primary">提交</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	#parse("common/footer.html")
+	</body>
+
+</html>

@@ -1,0 +1,116 @@
+.product-index-slider {
+	margin-bottom: 30px;
+}
+
+.product-items {
+	width: 100%;
+	clear: both;
+	position: relative;
+}
+
+.product-items .page-header {
+	width: 100%;
+	clear: both;
+}
+
+.product-items .col-md-3,.product-items .col-md-4 {
+	text-align: center;
+	margin-bottom: 30px;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.product-items .prod-item {
+	text-align: center;
+	padding: 30px 4px 10px 4px;
+	margin-right: 8px;
+	margin-left: 8px;
+	background-color: #f6f6f6;
+	border: 1px solid #f6f6f6;
+	position: relative;
+}
+
+.product-items .prod-item .operator_bar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 30px;
+	width: 100%;
+	display: none;
+}
+
+.product-items .prod-item:hover .operator_bar{
+	display: block;
+}
+
+.product-items .prod-item .operator_bar .operator {
+	float: right;
+}
+
+.product-items .prod-item .operator_bar .operator i{
+	float: right;
+	display: inline-block;
+	height: 30px;
+	width: 30px;
+	color: #fff;
+	background: #7d7d7d;
+	vertical-align: middle;
+	text-align: center;
+	line-height: 30px;
+	font-size: 18px;
+	font-weight: normal;
+	cursor: pointer;
+	margin-left: 2px;
+}
+
+.product-items .first {
+	margin-right: 10px;
+	margin-left: 0;
+}
+
+.product-items .last {
+	margin-right: 0;
+	margin-left: 10px;
+}
+
+.product-items .prod-item img {
+	max-width: 240px;
+}
+
+.product-items .prod-item .price {
+	color: #ff5722;
+	font: 24px 'Segoe UI Light', "Microsoft YaHei", Arial, sans-serif;
+	line-height: 36px;
+	vertical-align: middle;
+}
+
+.product-items .prod-item .product-title a {
+	font-size: 16px;
+}
+
+.product-items .prod-item a {
+	font-size: 14px;
+}
+
+.product-search-table thead tr th,.product-search-table thead tr td {
+	border-bottom: 0;
+	padding: 10px 20px;
+	vertical-align: middle;
+}
+
+.product-search-table thead tr th {
+	width: 10%;
+	text-align: right;
+	padding: 10px 20px;
+}
+
+.product-search-table thead tr td a {
+	color: #333;
+	text-decoration: none;
+	padding-right: 20px;
+}
+
+.product-search-table thead tr td a:hover,.product-search-table thead tr td a:focus
+	{
+	color: #4285f4;
+}

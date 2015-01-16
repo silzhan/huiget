@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		#parse("common/head.html")
+		<script type="text/javascript" src="$!{form.staticResourceDomain}/js/provinceCity/dlist.js"></script>
+		<script type="text/javascript" src="$!{form.staticResourceDomain}/js/provinceCity/provinceCity.js"></script>
+	</head>
+	
+	<body>
+	
+	#parse("common/header.html")
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2 sidebar">
+				#parse("common/nav-sidebar.html")
+			</div>
+			<div class="col-md-10 main">
+				<div class="page-header">
+					<h4>收货地址</h4>
+				</div>
+				#if($form.deliverAddresses.size() < 10) 
+				<form class="form-horizontal" role="form" action="/member/account/deliver-address" method="post">
+					<div class="form-group">
+						<label for="receiverName" class="col-sm-2 control-label"><span class="red">*</span>收货人姓名：</label>
+						<div class="col-sm-3">
+							<input type="text" class="full-input-sm" id="receiverName" name="receiverName" value="$!{form.receiverName}" maxlength="25" placeholder="">
+						</div>
+						<p class="help-block red">$!{form.errors["receiverName"]}</p>
+					</div>
+					<div class="form-group">
+					    <label for="" class="col-sm-2 control-label"><span class="red">*</span>所在地区：</label>
+					    <div class="col-sm-6">
+					    	<label class="select-inline">
+					    		<select class="select-sm" name="province" id="js-province" data-province="$!{form.province}"></select>
+					    	</label>
+					    	<label class="select-inline">
+					    		<select class="select-sm" name="city" id="js-city" data-city="$!{form.city}"></select>
+					    	</label>
+					    	<label class="select-inline">
+					    		<select class="select-sm" name="area" id="js-area" data-area="$!{form.area}"></select>
+					    	</label>
+					    </div>
+					    <p class="help-block red">$!{form.errors["province"]}</p>
+					</div>
+					<div class="form-group">
+						<label for="address" class="col-sm-2 control-label"><span class="red">*</span>详细地址：</label>
+						<div class="col-sm-6">
+							<input type="text" class="full-input-sm" id="address" name="address" value="$!{form.address}" maxlength="100" placeholder="">
+						</div>
+						<p class="help-block red">$!{form.errors["address"]}</p>
+					</div>
+					<div class="form-group">
+						<label for="postcode" class="col-sm-2 control-label"><span class="red">*</span>邮政编码：</label>
+						<div class="col-sm-3">
+							<input type="text" class="full-input-sm" id="postcode" name="postcode" value="$!{form.postcode}" maxlength="10" placeholder="">
+						</div>
+						<p class="help-block red">$!{form.errors["postcode"]}</p>
+					</div>
+					<div class="form-group">
+						<label for="mobilePhone" class="col-sm-2 control-label"><span class="red">*</span>手机/座机号码：</label>
+						<div class="col-sm-3">
+							<input type="text" class="full-input-sm" id="mobilePhone" name="mobilePhone" value="$!{form.mobilePhone}" maxlength="20" placeholder="手机号码">
+						</div>
+						<div class="col-sm-3">
+							<input type="text" class="full-input-sm" id="telePhone" name="telePhone" value="$!{form.telePhone}" maxlength="20" placeholder="区号-电话号码-分机">
+						</div>
+						<p class="help-block red">$!{form.errors["mobilePhone"]}</p>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-3">
+							<div class="checkbox">
+								<label> <input type="checkbox" name="defaultStatus" value="1" #if($form.defaultStatus == '1') checked="checked" #end>  设置为默认收货地址</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-4">
+							<input type="hidden" name="id" value="$!{form.id}" />
+							<button type="submit" class="btn btn-warning">保存</button>
+						</div>
+					</div>
+				</form>
+				#end
+				
+				#if($form.deliverAddresses && $form.deliverAddresses.size() > 0) 
+				#set($size = (10 - $form.deliverAddresses.size()))
+				<p class="icon-warning"><strong>已保存了<span id="item-num">$!{form.deliverAddresses.size()}</span>条地址，还能保存<span id="item-remaining">$!{size}</span>条地址</strong></p>
+				<table class="table table-hover table-bordered">
+					<thead>
+						<tr>
+							<th>收货人</th>
+							<th>所在地区</th>
+							<th>详细地址</th>
+							<th>邮编</th>
+							<th>手机/座机</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						#foreach($deliverAddress in $form.deliverAddresses)
+						<tr #if($deliverAddress.defaultStatus == '1') class="warning" title="默认地址" #end id="info-item-$!{deliverAddress.id}">
+							<td>$!{deliverAddress.receiverName}</td>
+							<td>$!{deliverAddress.province} $!{deliverAddress.city} $!{deliverAddress.area}</td>
+							<td>$!{deliverAddress.address}</td>
+							<td>$!{deliverAddress.postcode}</td>
+							<td>$!{deliverAddress.mobilePhone}<br/>$!{deliverAddress.telePhone}</td>
+							<td>
+								<a href="/member/account/deliver-address?id=$!{deliverAddress.id}" title="修改">修改</a>
+								|
+								<span class="link-like trash" data-id="$!{deliverAddress.id}" data-url="/member/account/delete-deliver-address.json" title="删除">删除</span>
+							</td>
+						</tr>
+						#end 
+					</tbody>
+				</table>
+				#else
+				<p class="icon-material-orange"><strong>已保存了0条地址，还能保存10条地址</strong></p>
+				#end
+			</div>
+		</div>
+	</div>
+	
+	#parse("common/footer.html")
+	
+	
+	</body>
+
+</html>

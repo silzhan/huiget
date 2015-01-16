@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huiget.mall.common.dal.mapper.LoginLogMapper">
+	
+    <resultMap type="loginLog" id="loginLogResult">
+		<result property="id" column="id"/>
+		<result property="loginId" column="login_id"/>
+		<result property="userId" column="user_id"/>
+		<result property="loginType" column="login_type"/>
+		<result property="loginIp" column="login_ip"/>
+		<result property="loginAddress" column="login_address"/>
+		<result property="loginTime" column="login_time"/>
+	</resultMap>
+    
+    <select id="queryByUserId" parameterType="int" resultMap="loginLogResult">
+       select id, login_id, user_id, login_type, login_ip, login_address, login_time from login_log where user_id = #{userId}
+    </select>
+    
+    <select id="queryById" parameterType="int" resultMap="loginLogResult">
+       select id, login_id, user_id, login_type, login_ip, login_address, login_time from login_log where id = #{id}
+    </select>
+    
+    <select id="countByUserId" parameterType="int" resultType="int">
+       select count(1) from login_log where user_id = #{userId}
+    </select>
+    
+    <insert id="insert" parameterType="loginLog">
+		insert into login_log (login_id, user_id, login_type, login_ip, login_address, login_time) 
+		values (#{loginId}, #{userId}, #{loginType}, #{loginIp}, #{loginAddress}, #{loginTime})
+	</insert>
+	
+	<delete id="deleteById">
+		delete from login_log where id = #{id}
+	</delete>
+</mapper>

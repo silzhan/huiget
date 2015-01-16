@@ -1,0 +1,141 @@
+.date-head strong,.date-change a {
+	background: url(date_icon.gif) no-repeat
+}
+
+.btn-today,.btn-day {
+	float: left;
+	cursor: pointer;
+	line-height: 18px;
+	padding: 0 3px;
+	margin: 5px 0 5px 5px
+}
+
+.btn-today:hover,.btn-day:hover {
+	background: #4285f4;
+	color: #fff;
+	text-decoration: none
+}
+
+.date-box {
+	color: #666;
+	font-size: 12px;
+	width: 216px;
+	border: 1px solid #ced4dd;
+	background: #fff;
+}
+
+.date_txt {
+	height: 18px;
+	/*border:#DBDBDB 1px double; 
+    text-indent:5px;*/
+	background: url(date_txt_icon.gif) no-repeat right;
+}
+
+.date-head {
+	background: #eef2f7;
+	border-bottom: 1px solid #ced4dd;
+	height: 38px;
+	line-height: 38px;
+	text-align: center;
+	padding: 6px;
+	*padding: 6px 2px
+}
+
+.date-head strong {
+	display: inline-block;
+	padding: 0 12px 0 0;
+	font-weight: normal;
+	background-position: right 0;
+	cursor: pointer;
+	height: 20px;
+	line-height: 20px;
+	vertical-align: text-top;
+	margin-top: -8px;
+}
+
+.date-head select {
+	float: left;
+	height: 28px;
+	width: 79px;
+	margin-right: 1px
+}
+
+html:root .date-head select {
+	height: 28px
+}
+
+.date-head select#js_cal_month_sel {
+	width: 54px
+}
+
+.date-change {
+	float: right;
+	width: 40px;
+	height: 28px
+}
+
+.date-change a {
+	float: left;
+	width: 20px;
+	height: 28px;
+	line-height: 10;
+	overflow: hidden
+}
+
+.date-change .prev {
+	background-position: 0 -16px
+}
+
+.date-change .next {
+	background-position: -20px -16px
+}
+
+.date-wkday {
+	height: 24px;
+	overflow: hidden;
+	padding: 0;
+}
+
+.date-wkday li,.date-contents li {
+	float: left;
+	width: 28px;
+	height: 24px;
+	line-height: 24px;
+	text-align: center;
+	overflow: hidden;
+	margin: 1px;
+	_display: inline
+}
+
+.date-contents {
+	padding: 0px;
+	overflow-y: auto;
+	_height: 1%;
+	background: #FFF
+}
+
+.date-contents a {
+	color: #666;
+	border-radius: 2px;
+	display: inline-block;
+	width: 28px;
+	-webkit-transition: background 0.2s linear;
+	-o-transition: background 0.2s linear;
+	transition: background 0.2s linear
+}
+
+.date-contents a:hover {
+	text-decoration: none;
+	background-color: #e7e7e7
+}
+
+.date-contents a:active {
+	color: #fff;
+	text-decoration: none;
+	background-color: #4285f4
+}
+
+.date-contents a.tday {
+	color: #fff;
+	background-color: #4285f4
+}
